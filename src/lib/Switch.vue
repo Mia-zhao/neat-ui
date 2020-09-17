@@ -1,6 +1,19 @@
 <template>
-  <button><span></span></button>
+  <button @click="switched = !switched"
+    :class="{ switched }">
+    <span></span>
+  </button>
 </template>
+
+<script lang="ts">
+import { ref } from 'vue'
+export default {
+  setup() {
+    const switched = ref(false)
+    return { switched }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 @import '../assets/style/helper.scss';
@@ -10,7 +23,7 @@ button {
   height: $h_outer;
   width: $h_outer*2;
   border: none;
-  background: $color_lightblue_800;
+  background: $color-grey-600;
   border-radius: $h_outer/2;
   position: relative;
 }
@@ -23,7 +36,10 @@ span {
   background: white;
   border-radius: 50%;
 }
-button:hover > span {
-  left: calc(100% - #{$h_inner} - 2px);
+button.switched {
+  background: $color-lightblue-800;
+  > span {
+    left: calc(100% - #{$h_inner} - 2px);
+  }
 }
 </style>
