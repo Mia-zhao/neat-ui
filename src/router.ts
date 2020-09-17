@@ -1,12 +1,12 @@
 import { createWebHashHistory, createRouter } from 'vue-router'
 import Home from './views/Home.vue'
 import Doc from './views/Doc.vue'
-import DocHome from './components/DocHome.vue'
-import ButtonDoc from './components/ButtonDoc.vue'
-import SwitchDoc from './components/SwitchDoc.vue'
-import DialogDoc from './components/DialogDoc.vue'
-import TabsDoc from './components/TabsDoc.vue'
-import CarouselDoc from './components/CarouselDoc.vue'
+import DemoHome from './components/DemoHome.vue'
+import ButtonDemo from './components/ButtonDemo.vue'
+import SwitchDemo from './components/SwitchDemo.vue'
+import DialogDemo from './components/DialogDemo.vue'
+import TabsDemo from './components/TabsDemo.vue'
+import CarouselDemo from './components/CarouselDemo.vue'
 
 const history = createWebHashHistory()
 export const router = createRouter({
@@ -19,22 +19,22 @@ export const router = createRouter({
       path: '/doc', component: Doc,
       children: [
         {
-          path: '', component: DocHome
+          path: '', component: DemoHome
         },
         {
-          path: 'button', component: ButtonDoc
+          path: 'button', component: ButtonDemo
         },
         {
-          path: 'switch', component: SwitchDoc
+          path: 'switch', component: SwitchDemo
         },
         {
-          path: 'dialog', component: DialogDoc
+          path: 'dialog', component: DialogDemo
         },
         {
-          path: 'tabs', component: TabsDoc
+          path: 'tabs', component: TabsDemo
         },
         {
-          path: 'carousel', component: CarouselDoc
+          path: 'carousel', component: CarouselDemo
         }
       ]
     }
