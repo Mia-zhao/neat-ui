@@ -35,11 +35,15 @@ span {
   width: $h_inner;
   background: white;
   border-radius: 50%;
+  transition: left 250ms;
 }
 button.switched {
   background: $color-lightblue-800;
   > span {
     left: calc(100% - #{$h_inner} - 2px);
   }
+}
+button:focus {
+  outline: none;
 }
 </style>
