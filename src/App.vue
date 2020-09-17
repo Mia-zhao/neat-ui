@@ -7,15 +7,21 @@ import { ref, provide } from 'vue'
 import { MENU_VISIBLE } from './constants/Refs'
 import { router } from './router'
 
+const WIDTH_THRESHOLD = 500
+const getScreenWidth = (() => {
+  return document.documentElement.clientWidth
+})
+
 export default {
   name: 'App',
   setup() {
-    const screenWidth = document.documentElement.clientWidth
-    const showMenu = screenWidth > 500
-    const menuVisible = ref(showMenu)
+    const menuVisible = ref(getScreenWidth() > WIDTH_THRESHOLD)
     provide(MENU_VISIBLE, menuVisible)
+
     router.afterEach(() => {
-      menuVisible.value = showMenu
+      if (getScreenWidth() <= WIDTH_THRESHOLD) {
+        menuVisible.value = false
+      }
     })
   }
 }
