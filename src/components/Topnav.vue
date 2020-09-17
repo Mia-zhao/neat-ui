@@ -30,11 +30,14 @@ export default {
 .topnav {
   background: $color-lightblue-800;
   display: flex;
+  padding: 16px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   justify-content: center;
   align-items: center;
-  padding: 16px;
-  position: relative;
-  z-index: 10;
   >.logo {
     max-width: 6em;
     margin-right: auto;
