@@ -6,7 +6,7 @@
       <li>菜单2</li>
     </ul>
     <span @click="toggleMenu"
-      class="toggleAsideMenu"><img :src="menuSvg" /></span>
+      class="toggleAsideMenu"></span>
   </div>
 </template>
 
@@ -26,8 +26,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/style/helper.scss';
 .topnav {
-  background: #0277BD;
+  background: $color-lightblue-800;
   display: flex;
   justify-content: center;
   align-items: center;

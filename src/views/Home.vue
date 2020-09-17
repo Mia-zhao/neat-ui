@@ -22,13 +22,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/style/helper.scss';
 .banner {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #B3E5FC;
+  background: $color-lightblue-100;
   >.actions {
     padding: 8px 0;
     a {

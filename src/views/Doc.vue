@@ -44,8 +44,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/style/helper.scss';
 aside {
-  background: #B3E5FC;
+  background: $color-lightblue-100;
   width: 150px;
   padding: 16px;
   >h2 {
