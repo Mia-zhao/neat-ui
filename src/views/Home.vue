@@ -29,10 +29,8 @@ export default {
   align-items: center;
   flex-direction: column;
   background: #B3E5FC;
-
   >.actions {
     padding: 8px 0;
-
     a {
       margin: 0 8px;
       background: #fff;

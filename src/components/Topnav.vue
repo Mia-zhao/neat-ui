@@ -1,11 +1,12 @@
 <template>
   <div class="topnav">
-    <div class="logo" @click="toggleMenu">LOGO</div>
+    <div class="logo">LOGO</div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
-    <span class="toggleAsideMenu"></span>
+    <span @click="toggleMenu"
+      class="toggleAsideMenu"><img :src="menuSvg" /></span>
   </div>
 </template>
 
@@ -33,28 +34,32 @@ export default {
   padding: 16px;
   position: relative;
   z-index: 10;
-
   >.logo {
     max-width: 6em;
     margin-right: auto;
   }
-
   >.menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-
     >li {
       margin: 0 1em;
     }
   }
+  > .toggleAsideMenu {
+    width: 24px;
+    height: 24px;
+    background: #666;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
   @media (max-width: 500px) {
-    > .menu {
-      display: none;
-    }
-    > .logo{
-      margin: 0 auto;
-    }
+    > .menu { display: none; }
+    > .logo { margin: 0 auto; }
+    > .toggleAsideMenu { display: inline-block; }
   }
 }
 </style>

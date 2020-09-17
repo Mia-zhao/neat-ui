@@ -9,7 +9,8 @@ import { MENU_VISIBLE } from './constants/Refs'
 export default {
   name: 'App',
   setup() {
-    const menuVisible = ref(false)
+    const screenWidth = document.documentElement.clientWidth
+    const menuVisible = ref(screenWidth > 500)
     provide(MENU_VISIBLE, menuVisible)
   }
 }
