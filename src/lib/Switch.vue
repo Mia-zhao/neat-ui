@@ -1,21 +1,23 @@
 <template>
-  <button @click="toggle"
-    :class="{ checked: value }">
+  <button @click="toggle" :class="{ checked: value, disabled, transparent }">
     <span></span>
   </button>
-  <div>{{value}}</div>
 </template>
 
 <script lang="ts">
 export default {
   props: {
-    value: Boolean
+    value: Boolean,
+    disabled: Boolean,
+    transparent: Boolean
   },
   setup(props, context) {
     const toggle = () => {
       context.emit('update:value', !props.value)
     }
-    return { toggle }
+    return {
+      toggle
+    }
   }
 }
 </script>
@@ -24,14 +26,16 @@ export default {
 @import '../assets/style/helper.scss';
 $h_outer: 22px;
 $h_inner: $h_outer - 4px;
+
 button {
   height: $h_outer;
   width: $h_outer*2;
   border: none;
-  background: $color-grey-600;
+  background: $color-grey-300;
   border-radius: $h_outer/2;
   position: relative;
 }
+
 span {
   position: absolute;
   top: 2px;
@@ -42,13 +46,42 @@ span {
   border-radius: 50%;
   transition: left 250ms;
 }
+
 button.checked {
   background: $color-lightblue-800;
-  > span {
+
+  >span {
+    background: white;
     left: calc(100% - #{$h_inner} - 2px);
   }
 }
+
 button:focus {
   outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button.disabled {
+  &:hover {
+    cursor: no-drop;
+  }
+
+  background: $color-grey-200;
+
+  >span {
+    background: $color-grey-100;
+  }
+
+  &.checked {
+    background: $color-lightblue-700;
+  }
+}
+
+button.transparent {
+  border: 1px solid red;
+  background: transparent;
 }
 </style>
