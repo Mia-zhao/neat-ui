@@ -1,6 +1,6 @@
 <template>
   <button @click="toggle"
-    :class="{ switched: value }">
+    :class="{ checked: value }">
     <span></span>
   </button>
   <div>{{value}}</div>
@@ -42,7 +42,7 @@ span {
   border-radius: 50%;
   transition: left 250ms;
 }
-button.switched {
+button.checked {
   background: $color-lightblue-800;
   > span {
     left: calc(100% - #{$h_inner} - 2px);
