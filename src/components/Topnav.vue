@@ -1,12 +1,17 @@
 <template>
   <div class="topnav">
-    <div class="logo">LOGO</div>
+    <div class="logo">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-logo"></use>
+      </svg>
+    </div>
     <ul class="menu">
       <li>菜单1</li>
       <li>菜单2</li>
     </ul>
-    <span @click="toggleMenu"
-      class="toggleAsideMenu"></span>
+    <svg @click="toggleMenu" class="toggleAsideMenu" aria-hidden="true">
+      <use xlink:href="#icon-menu"></use>
+    </svg>
   </div>
 </template>
 
@@ -53,7 +58,6 @@ export default {
   > .toggleAsideMenu {
     width: 24px;
     height: 24px;
-    background: #666;
     position: absolute;
     left: 16px;
     top: 50%;
