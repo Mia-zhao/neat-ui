@@ -1,6 +1,6 @@
 <template>
-  <button @click="toggle"
-    :class="{ checked: value, disabled, transparent }">
+  <button class="neat-switch" @click="toggle"
+    :class="{ 'neat-switch-checked': value, disabled, transparent }">
     <span></span>
   </button>
 </template>
@@ -16,16 +16,18 @@ export default {
     const toggle = () => {
       context.emit('update:value', !props.value)
     }
-    return { toggle }
+    return {
+      toggle
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/style/helper.scss';
 $h_outer: 22px;
 $h_inner: $h_outer - 4px;
-button {
+.neat-switch {
   height: $h_outer;
   width: $h_outer*2;
   border: none;
@@ -43,32 +45,32 @@ span {
   border-radius: 50%;
   transition: left 250ms;
 }
-button.checked {
+.neat-switch.neat-switch-checked {
   background: $color-lightblue-800;
-  > span {
+  >span {
     background: white;
     left: calc(100% - #{$h_inner} - 2px);
   }
 }
-button:focus {
+.neat-switch:focus {
   outline: none;
 }
-button:hover {
+.neat-switch:hover {
   cursor: pointer;
 }
-button.disabled {
+.neat-switch.disabled {
   &:hover {
     cursor: no-drop;
   }
   background: $color-grey-200;
-  > span {
+  >span {
     background: $color-grey-100;
   }
-  &.checked {
+  &.neat-switch-checked {
     background: $color-lightblue-700;
   }
 }
-button.transparent {
+.neat-switch.transparent {
   border: 1px solid white;
   background: transparent;
 }
