@@ -1,20 +1,42 @@
 <template>
   <button class="neat-button"
-    :class="`theme-${theme}`"
-    v-bind="$attrs" >
+    :class="classes">
     <slot />
   </button>
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
 export default {
   props: {
     theme: {
       type: String,
       default: 'normal'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    transparent: {
+      type: Boolean,
+      default: false
+    },
+    level: {
+      type: String,
+      default: 'primary'
     }
   },
-  inheritAttrs: false
+  setup(props, context) {
+    const { theme, level, disabled, transparent } = props
+    const classes = computed(() => {
+      return {
+        [`neat-button-theme-${theme}`]: theme,
+        [`neat-button-level-${level}`]: level,
+        'neat-button-disabled': disabled,
+        'neat-button-transparent': transparent }
+    })
+    return { classes }
+  }
 }
 </script>
 
@@ -49,5 +71,4 @@ $h: 32px;
     border: 0;
   }
 }
-
 </style>

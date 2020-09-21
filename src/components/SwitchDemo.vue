@@ -18,7 +18,7 @@
     </div>
     <div class="example-disabled">
       <h3>Disabled</h3>
-      <Switch :value="" disabled />
+      <Switch :value="checked" disabled />
     </div>
   </section>
   <section class="properties">
@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/style/helper.scss';
 h1 {
   margin-top: 30px;

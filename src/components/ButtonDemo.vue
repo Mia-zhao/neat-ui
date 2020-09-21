@@ -5,10 +5,51 @@
   </section>
   <h2>Examples</h2>
   <section class="examples">
-    <div class="example-basic">
-      <h3>Basic Usage</h3>
+    <div class="example-theme">
+      <h3>Theme</h3>
       <Button @click="onClick"
-        @focus="onClick" @mouseover="onClick">
+        @focus="onClick"
+        @mouseover="onClick">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        theme="link">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        theme="text">
+        你好
+      </Button>
+    </div>
+    <div class="example-disabled">
+      <h3>Disabled</h3>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        disabled>
+        你好
+      </Button>
+    </div>
+    <div class="example-transparent">
+      <h3>Transparent</h3>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        transparent>
         你好
       </Button>
     </div>
@@ -24,9 +65,21 @@ export default {
   components: { Button },
   setup() {
     const onClick = () => {
-      console.log('1')
     }
     return { onClick }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/style/helper.scss';
+section {
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    min-width: 50%;
+    border: 1px solid $color-grey-300;
+    border-radius: 4px;
+  }
+}
+</style>

@@ -1,6 +1,8 @@
 <template>
   <button class="neat-switch" @click="toggle"
-    :class="{ 'neat-switch-checked': value, disabled, transparent }">
+    :class="{ 'neat-switch-checked': value,
+      'neat-switch-disabled': disabled,
+      'neat-switch-transparent': transparent }">
     <span></span>
   </button>
 </template>
@@ -35,7 +37,7 @@ $h_inner: $h_outer - 4px;
   border-radius: $h_outer/2;
   position: relative;
 }
-span {
+.neat-switch > span {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -58,7 +60,7 @@ span {
 .neat-switch:hover {
   cursor: pointer;
 }
-.neat-switch.disabled {
+.neat-switch.neat-switch-disabled {
   &:hover {
     cursor: no-drop;
   }
@@ -70,7 +72,7 @@ span {
     background: $color-lightblue-700;
   }
 }
-.neat-switch.transparent {
+.neat-switch.neat-switch-transparent {
   border: 1px solid white;
   background: transparent;
 }
