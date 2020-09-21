@@ -52,23 +52,52 @@ $h: 32px;
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  background: white;
-  color: #333;
-  border: 1p solid $color-grey-100;
+  background: $color-lightblue-700;
+  color: white;
+  border: none;
   border-radius: 4px;
   box-shadow: 0 1px 0 fade-out (black, 0.95);
   & + & {
     margin-left: 8px;
-  }
-  &:hover, &:focus {
-    color: $color-lightblue-100;
-    border-color: $color-lightblue-100;
   }
   &:focus {
     outline: none;
   }
   &::-moz-focus-inner {
     border: 0;
+  }
+}
+
+.neat-button {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    display: none;
+    content: '';
+    position: absolute;
+    border-radius: 40%;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    top: 50%;
+    left: 50%;
+    animation: ripple 0.2s;
+    opacity: 1;
+  }
+  &:active::before {
+    display: block;
+  }
+  @keyframes ripple {
+    from {
+      opacity: 1;
+      transform: scale(0.4);
+    }
+    to {
+      opacity: 1;
+      transform: scale(2);
+    }
   }
 }
 </style>
