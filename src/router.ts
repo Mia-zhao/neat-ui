@@ -4,7 +4,7 @@ import Doc from './views/Doc.vue'
 import DemoHome from './components/DemoHome.vue'
 import ButtonDemo from './components/ButtonDemo.vue'
 import SwitchDemo from './components/SwitchDemo.vue'
-import DialogDemo from './components/DialogDemo.vue'
+import ModalDemo from './components/ModalDemo.vue'
 import TabsDemo from './components/TabsDemo.vue'
 import CarouselDemo from './components/CarouselDemo.vue'
 
@@ -28,7 +28,7 @@ export const router = createRouter({
           path: 'switch', component: SwitchDemo
         },
         {
-          path: 'dialog', component: DialogDemo
+          path: 'modal', component: ModalDemo
         },
         {
           path: 'tabs', component: TabsDemo
