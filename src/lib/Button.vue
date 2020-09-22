@@ -79,7 +79,14 @@ button.neat-button {
   }
 }
 
-.neat-button {
+button.neat-button {
+  &.neat-button-disabled {
+    cursor: no-drop;
+    background: $color-grey-300;
+  }
+}
+
+button.neat-button:not(.neat-button-disabled) {
   position: relative;
   overflow: hidden;
   &::before {
