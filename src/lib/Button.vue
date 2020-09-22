@@ -1,10 +1,10 @@
 <template>
   <button class="neat-button"
     :class="classes">
-    <svg class="icon" aria-hidden="true" v-if="loading">
-      <use xlink:href="#icon-loading"></use>
+    <svg class="icon" aria-hidden="true" v-if="showIcon">
+      <use :xlink:href="`#icon-${buttonIcon}`"></use>
     </svg>
-    <slot />
+    <span v-if="hasSlot"><slot /></span>
   </button>
 </template>
 
@@ -35,10 +35,20 @@ export default {
     shadow: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String,
+      default: ''
     }
   },
   setup(props, context) {
-    const { theme, level, disabled, transparent, loading, shadow } = props
+    const { theme, level, disabled, transparent, loading, shadow, icon } = props
+    let buttonIcon = icon
+    if (loading) {
+      buttonIcon = 'loading'
+    }
+    const showIcon = buttonIcon !== ''
+    const hasSlot = context.slots.default !== undefined
     const classes = computed(() => {
       return {
         [`neat-button-theme-${theme}`]: theme,
@@ -49,7 +59,7 @@ export default {
         'neat-button-shadow': shadow
       }
     })
-    return { classes }
+    return { classes, showIcon, buttonIcon, hasSlot }
   }
 }
 </script>
@@ -116,7 +126,11 @@ button.neat-button.neat-button-level-secondary {
 
 button.neat-button {
   & > .icon {
-    margin-right: 6px;
+    width: 1em;
+    height: 1em;
+    & + span {
+      margin-left: 6px;
+    }
   }
   &.neat-button-loading > .icon {
     animation: rotate 1s linear infinite;

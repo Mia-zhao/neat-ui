@@ -95,6 +95,31 @@
         你好
       </Button>
     </div>
+    <div class="example-icon">
+      <h3>Icon</h3>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        icon="yes">
+        Yes
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        icon="no">
+        No
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        icon="yes">
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        icon="no">
+      </Button>
+    </div>
   </section>
   <section class="properties">
 
