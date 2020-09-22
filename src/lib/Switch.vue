@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/style/helper.scss';
+@import './neat-style.scss';
 $h_outer: 22px;
 $h_inner: $h_outer - 4px;
 .neat-switch {

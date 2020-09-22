@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/style/helper.scss';
+@import '../lib/neat-style.scss';
 .banner {
   padding: 100px 0;
   display: flex;

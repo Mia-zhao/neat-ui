@@ -41,9 +41,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/style/helper.scss';
+@import './neat-style.scss';
 $h: 32px;
-.neat-button {
+button.neat-button.neat-button {
   box-sizing: border-box;
   height: $h;
   padding: 0 12px;
@@ -68,6 +68,17 @@ $h: 32px;
   }
 }
 
+button.neat-button {
+  &.neat-button-theme-link,
+  &.neat-button-theme-text {
+    background: transparent;
+    color: $color-lightblue-800;
+  }
+  &.neat-button-theme-link {
+    border: 1px solid $color-lightblue-800;
+  }
+}
+
 .neat-button {
   position: relative;
   overflow: hidden;
@@ -76,7 +87,7 @@ $h: 32px;
     content: '';
     position: absolute;
     border-radius: 40%;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(129, 212, 250, 0.3);
     width: 100px;
     height: 100px;
     margin-top: -50px;

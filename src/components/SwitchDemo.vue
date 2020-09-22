@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/style/helper.scss';
+@import '../lib/neat-style.scss';
 h1 {
   margin-top: 30px;
 }

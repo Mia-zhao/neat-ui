@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/style/helper.scss';
+@import '../lib/neat-style.scss';
 .topnav {
   background: $color-lightblue-800;
   display: flex;
