@@ -53,6 +53,48 @@
         你好
       </Button>
     </div>
+    <div class="example-level">
+      <h3>Level</h3>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        level="secondary">
+        你好
+      </Button>
+    </div>
+    <div class="example-loading">
+      <h3>Loading</h3>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        loading>
+        你好
+      </Button>
+    </div>
+    <div class="example-shadow">
+      <h3>Shadow</h3>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick">
+        你好
+      </Button>
+      <Button @click="onClick"
+        @focus="onClick"
+        @mouseover="onClick"
+        shadow>
+        你好
+      </Button>
+    </div>
   </section>
   <section class="properties">
 
@@ -79,6 +121,7 @@ section {
   > div {
     min-width: 50%;
     border: 1px solid $color-grey-300;
+    padding: 10px;
     border-radius: 4px;
   }
 }

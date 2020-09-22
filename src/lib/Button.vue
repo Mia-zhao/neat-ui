@@ -1,6 +1,9 @@
 <template>
   <button class="neat-button"
     :class="classes">
+    <svg class="icon" aria-hidden="true" v-if="loading">
+      <use xlink:href="#icon-loading"></use>
+    </svg>
     <slot />
   </button>
 </template>
@@ -24,16 +27,27 @@ export default {
     level: {
       type: String,
       default: 'primary'
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    shadow: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props, context) {
-    const { theme, level, disabled, transparent } = props
+    const { theme, level, disabled, transparent, loading, shadow } = props
     const classes = computed(() => {
       return {
         [`neat-button-theme-${theme}`]: theme,
         [`neat-button-level-${level}`]: level,
         'neat-button-disabled': disabled,
-        'neat-button-transparent': transparent }
+        'neat-button-transparent': transparent,
+        'neat-button-loading': loading,
+        'neat-button-shadow': shadow
+      }
     })
     return { classes }
   }
@@ -79,10 +93,41 @@ button.neat-button {
   }
 }
 
+button.neat-button.neat-button-disabled {
+  cursor: no-drop;
+  background: $color-grey-300;
+}
+
+button.neat-button.neat-button-transparent {
+  border: 1px solid white;
+  color: white;
+  background: transparent;
+}
+
+button.neat-button.neat-button-shadow {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+button.neat-button.neat-button-level-secondary {
+  border: 1px solid $color-lightblue-100;
+  color: $color-lightblue-800;
+  background: transparent;
+}
+
 button.neat-button {
-  &.neat-button-disabled {
-    cursor: no-drop;
-    background: $color-grey-300;
+  & > .icon {
+    margin-right: 6px;
+  }
+  &.neat-button-loading > .icon {
+    animation: rotate 1s linear infinite;
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }
 
@@ -106,6 +151,12 @@ button.neat-button:not(.neat-button-disabled) {
   }
   &:active::before {
     display: block;
+  }
+  &.neat-button-shadow:active {
+    box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 8px 0px rgba(0, 0, 0, 0.12), 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 100ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   @keyframes ripple {
     from {
