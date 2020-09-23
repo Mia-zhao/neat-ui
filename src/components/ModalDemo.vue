@@ -5,15 +5,19 @@
   </section>
   <h2>Examples</h2>
   <section class="examples">
-    <div class="example-modal">
-      <h3>Modal</h3>
+    <div class="example-modal1">
+      <h3>Modal Default</h3>
       <Button @click="visible = !visible">toggle</Button>
-      <Modal v-model:visible="visible" :functionOK="funcOK" :functionCancel="funcCancel">
+      <Modal v-model:visible="visible" >
         <template v-slot:title>Custom Header</template>
         <template v-slot:content>
           custom content
         </template>
       </Modal>
+    </div>
+    <div class="example-modal2">
+      <h3>Modal No Transition</h3>
+      <Button @click="showModal()">toggle</Button>
     </div>
   </section>
   <section class="properties">
@@ -22,11 +26,10 @@
 </template>
 
 <script lang="ts">
-import {
-  ref
-} from 'vue'
+import { ref, h } from 'vue'
 import Modal from '../lib/Modal.vue'
 import Button from '../lib/Button.vue'
+import { openModal } from '../lib/openModal'
 export default {
   components: {
     Modal,
@@ -34,17 +37,14 @@ export default {
   },
   setup() {
     const visible = ref(false)
-    const funcOK = () => {
-
+    const showModal = () => {
+      openModal({
+        title: h('strong', {}, 'Custom Header 2'),
+        content: 'Custom Content 2',
+        showTransition: false
+      })
     }
-    const funcCancel = () => {
-
-    }
-    return {
-      visible,
-      funcOK,
-      funcCancel
-    }
+    return { visible, showModal }
   }
 }
 </script>
