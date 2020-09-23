@@ -1,4 +1,5 @@
 <template>
+  <Teleport to="body">
   <transition name="modal">
     <template v-if="visible">
       <div class="neat-modal-overlay" @click="closeOnClickOverlay && closeModal()">
@@ -26,6 +27,7 @@
       </div>
     </template>
   </transition>
+  </Teleport>
 </template>
 
 <script lang="ts">
