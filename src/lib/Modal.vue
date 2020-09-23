@@ -1,30 +1,31 @@
 <template>
-  <template v-if="visible">
-    <div class="neat-modal-overlay"
-      @click="closeOnClickOverlay && closeModal()">
-    </div>
-    <div class="neat-modal-wrapper">
-      <div class="neat-modal">
-        <header>
-          <slot name="title">
-            Default Header
-          </slot>
-          <span @click="closeModal" class="neat-modal-close"></span>
-        </header>
-        <main>
-          <slot name="content">
-            Default Content
-          </slot>
-        </main>
-        <footer>
-          <Button @click="functionOK?.() !== false && closeModal()"
-            icon="yes"></Button>
-          <Button @click="functionCancel?.(); closeModal();"
-            icon="no" level="secondary"></Button>
-        </footer>
+  <transition name="modal">
+    <template v-if="visible">
+      <div class="neat-modal-overlay" @click="closeOnClickOverlay && closeModal()">
+        <div class="neat-modal-wrapper">
+          <div class="neat-modal" :class="{'neat-modal-transition': showTransition}">
+            <header>
+              <slot name="title">
+                Default Header
+              </slot>
+              <span @click="closeModal" class="neat-modal-close"></span>
+            </header>
+            <main>
+              <slot name="content">
+                Default Content
+              </slot>
+            </main>
+            <footer>
+              <Button @click="functionOK?.() !== false && closeModal()"
+                icon="yes"></Button>
+              <Button @click="functionCancel?.(); closeModal();"
+                icon="no" level="secondary"></Button>
+            </footer>
+          </div>
+        </div>
       </div>
-    </div>
-  </template>
+    </template>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -39,6 +40,10 @@ export default {
       default: false
     },
     closeOnClickOverlay: {
+      type: Boolean,
+      default: true
+    },
+    showTransition: {
       type: Boolean,
       default: true
     },
@@ -66,6 +71,7 @@ export default {
   box-shadow: 0 0 3px fade_out(black, 0.5);
   min-width: 15em;
   max-width: 90%;
+  transition: all 0.3s ease;
 
   &-overlay {
     position: fixed;
@@ -75,6 +81,7 @@ export default {
     height: 100%;
     background: fade_out(black, 0.5);
     z-index: 10;
+    transition: opacity 0.3s ease;
   }
 
   &-wrapper {
@@ -118,12 +125,28 @@ export default {
       top: 50%;
       left: 50%;
     }
+
     &::before {
       transform: translate(-50%, -50%) rotate(-45deg);
     }
+
     &::after {
       transform: translate(-50%, -50%) rotate(45deg);
     }
   }
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .neat-modal,
+.modal-leave-active .neat-modal.neat-modal-transition {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>
