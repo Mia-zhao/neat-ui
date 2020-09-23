@@ -8,7 +8,9 @@
     <div class="example-theme">
       <h3>Theme</h3>
       <Button @click="visible = !visible">toggle</Button>
-      <Modal :visible="visible"/>
+      <Modal v-model:visible="visible"
+        :functionOK="funcOK" :functionCancel="funcCancel">
+      </Modal>
     </div>
   </section>
   <section class="properties">
@@ -27,7 +29,13 @@ export default {
   },
   setup() {
     const visible = ref(false)
-    return { visible }
+    const funcOK = () => {
+
+    }
+    const funcCancel = () => {
+
+    }
+    return { visible, funcOK, funcCancel }
   }
 }
 </script>

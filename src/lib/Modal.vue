@@ -1,16 +1,23 @@
 <template>
   <template v-if="visible">
-    <div class="neat-modal-overlay"></div>
+    <div class="neat-modal-overlay"
+      @click="closeOnClickOverlay && closeModal()">
+    </div>
     <div class="neat-modal-wrapper">
       <div class="neat-modal">
-        <header>标题 <span class="neat-modal-close"></span></header>
+        <header>
+          标题
+          <span @click="closeModal" class="neat-modal-close"></span>
+        </header>
         <main>
           <p>一</p>
           <p>二</p>
         </main>
         <footer>
-          <Button icon="yes"></Button>
-          <Button icon="no" level="secondary"></Button>
+          <Button @click="functionOK?.() !== false && closeModal()"
+            icon="yes"></Button>
+          <Button @click="functionCancel?.(); closeModal();"
+            icon="no" level="secondary"></Button>
         </footer>
       </div>
     </div>
@@ -27,7 +34,23 @@ export default {
     visible: {
       type: Boolean,
       default: false
+    },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: true
+    },
+    functionOK: {
+      type: Function
+    },
+    functionCancel: {
+      type: Function
     }
+  },
+  setup(props, context) {
+    const closeModal = () => {
+      context.emit('update:visible', false)
+    }
+    return { closeModal }
   }
 }
 </script>
