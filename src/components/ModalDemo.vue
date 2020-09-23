@@ -7,7 +7,8 @@
   <section class="examples">
     <div class="example-theme">
       <h3>Theme</h3>
-      <Modal />
+      <Button @click="visible = !visible">toggle</Button>
+      <Modal :visible="visible"/>
     </div>
   </section>
   <section class="properties">
@@ -16,10 +17,17 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
 import Modal from '../lib/Modal.vue'
+import Button from '../lib/Button.vue'
 export default {
   components: {
-    Modal
+    Modal,
+    Button
+  },
+  setup() {
+    const visible = ref(false)
+    return { visible }
   }
 }
 </script>

@@ -1,18 +1,20 @@
 <template>
-  <div class="neat-modal-overlay"></div>
-  <div class="neat-modal-wrapper">
-    <div class="neat-modal">
-      <header>标题 <span class="neat-modal-close"></span></header>
-      <main>
-        <p>一</p>
-        <p>二</p>
-      </main>
-      <footer>
-        <Button icon="yes"></Button>
-        <Button icon="no" level="secondary"></Button>
-      </footer>
+  <template v-if="visible">
+    <div class="neat-modal-overlay"></div>
+    <div class="neat-modal-wrapper">
+      <div class="neat-modal">
+        <header>标题 <span class="neat-modal-close"></span></header>
+        <main>
+          <p>一</p>
+          <p>二</p>
+        </main>
+        <footer>
+          <Button icon="yes"></Button>
+          <Button icon="no" level="secondary"></Button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <script lang="ts">
@@ -20,6 +22,12 @@ import Button from './Button.vue'
 export default {
   components: {
     Button
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
