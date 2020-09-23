@@ -7,7 +7,7 @@
   <section class="examples">
     <div class="example-theme">
       <h3>Theme</h3>
-      <Modal>
+      <Modal />
     </div>
   </section>
   <section class="properties">
