@@ -6,12 +6,15 @@
     <div class="neat-modal-wrapper">
       <div class="neat-modal">
         <header>
-          标题
+          <slot name="title">
+            Default Header
+          </slot>
           <span @click="closeModal" class="neat-modal-close"></span>
         </header>
         <main>
-          <p>一</p>
-          <p>二</p>
+          <slot name="content">
+            Default Content
+          </slot>
         </main>
         <footer>
           <Button @click="functionOK?.() !== false && closeModal()"

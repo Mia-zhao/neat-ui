@@ -5,11 +5,14 @@
   </section>
   <h2>Examples</h2>
   <section class="examples">
-    <div class="example-theme">
-      <h3>Theme</h3>
+    <div class="example-modal">
+      <h3>Modal</h3>
       <Button @click="visible = !visible">toggle</Button>
-      <Modal v-model:visible="visible"
-        :functionOK="funcOK" :functionCancel="funcCancel">
+      <Modal v-model:visible="visible" :functionOK="funcOK" :functionCancel="funcCancel">
+        <template v-slot:title>Custom Header</template>
+        <template v-slot:content>
+          custom content
+        </template>
       </Modal>
     </div>
   </section>
@@ -19,7 +22,9 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import {
+  ref
+} from 'vue'
 import Modal from '../lib/Modal.vue'
 import Button from '../lib/Button.vue'
 export default {
@@ -35,7 +40,11 @@ export default {
     const funcCancel = () => {
 
     }
-    return { visible, funcOK, funcCancel }
+    return {
+      visible,
+      funcOK,
+      funcCancel
+    }
   }
 }
 </script>
