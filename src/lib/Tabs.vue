@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, onMounted, onUpdated } from 'vue'
+import { computed, ref, onMounted, watchEffect } from 'vue'
 import Tab from './Tab.vue'
 export default {
   props: {
@@ -32,15 +32,15 @@ export default {
     const navContainer = ref<HTMLDivElement>(null)
     const selectedNav = ref<HTMLDivElement>(null)
     const underline = ref<HTMLDivElement>(null)
-    const setUnderlineStyle = () => {
-      const { width: selectedWidth, left: selectedLeft } =
-        selectedNav.value.getBoundingClientRect()
-      const { left: navLeft } = navContainer.value.getBoundingClientRect()
-      underline.value.style.width = selectedWidth + 'px'
-      underline.value.style.left = (selectedLeft - navLeft) + 'px'
-    }
-    onMounted(setUnderlineStyle)
-    onUpdated(setUnderlineStyle)
+    onMounted(() => {
+      watchEffect(() => {
+        const { width: selectedWidth, left: selectedLeft } =
+          selectedNav.value.getBoundingClientRect()
+        const { left: navLeft } = navContainer.value.getBoundingClientRect()
+        underline.value.style.width = selectedWidth + 'px'
+        underline.value.style.left = (selectedLeft - navLeft) + 'px'
+      })
+    })
     const defaultSlots = context.slots.default()
     defaultSlots.forEach(slot => {
       if (slot.type !== Tab) {
