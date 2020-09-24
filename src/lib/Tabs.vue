@@ -1,7 +1,7 @@
 <template>
   <div class="neat-tabs">
-    <div class="neat-tabs-nav"
-      ref="navContainer">
+    <div class="neat-tabs-nav" ref="navContainer"
+      :class="{[`neat-tabs-type-${type}`]: type}">
       <div class="neat-tabs-nav-item"
         v-for="(slot, index) in defaultSlots" :key="index"
         :ref="el => { if (slot.props.title === selected) selectedNav = el }"
@@ -24,6 +24,10 @@ import { computed, ref, onMounted, watchEffect } from 'vue'
 import Tab from './Tab.vue'
 export default {
   props: {
+    type: {
+      type: String,
+      default: 'default'
+    },
     selected: {
       type: String
     }
@@ -52,8 +56,8 @@ export default {
         return slot.props.title === props.selected
       })[0]
     })
-    return { defaultSlots, selectedContent,
-      selectedNav, underline, navContainer }
+    return { defaultSlots, selectedContent, selectedNav, underline,
+      navContainer }
   }
 }
 </script>
@@ -64,27 +68,56 @@ export default {
   &-nav {
     display: flex;
     color: $color-grey-900;
-    border-bottom: 1px solid $color-grey-400;
     position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0px;
+      height: 1px;
+      width: 100%;
+      background: $color-grey-300;
+    }
     &-item {
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
-      &:first-child {
-        margin-left: 0;
-      }
+      &:first-child { margin-left: 0; }
       &.selected {
         color: $color-lightblue-700;
       }
     }
     &-underline {
       position: absolute;
-      height: 3px;
-      background: $color-lightblue-700;
       left: 0;
       bottom: -1px;
+      height: 3px;
       width: 100px;
+      border-radius: 4px;
+      background: $color-lightblue-700;
       transition: all 250ms;
+    }
+  }
+  &-nav.neat-tabs-type-card {
+    &::before { left: -1px; }
+    .neat-tabs-nav-item {
+      padding: 8px 16px 4px 16px;
+      margin: 0 1px;
+      border: 1px solid $color-grey-300;
+      border-bottom: none;
+      background: $color-grey-200;
+      transition: background-color 250ms;
+      &:first-child { margin-left: -1px; }
+      &.selected {
+        background: $color-grey-100;
+        border-bottom: 1px solid $color-grey-100;
+      }
+    }
+    .neat-tabs-nav-underline {
+      height: 1px;
+      border-radius: 0;
+      background: $color-grey-100;
+      transition: none;
     }
   }
   &-content {

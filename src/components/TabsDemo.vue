@@ -5,8 +5,16 @@
   </section>
   <h2>Examples</h2>
   <section class="examples">
-    <div class="example-tabs">
+    <h3>Tabs Default</h3>
+    <div class="example-tabs1">
       <Tabs v-model:selected="selected">
+        <Tab title="Nav 1">Content 1</Tab>
+        <Tab title="Nav 2">Content 2</Tab>
+      </Tabs>
+    </div>
+    <div class="example-tabs2">
+      <h3>Tabs Card Type</h3>
+      <Tabs v-model:selected="selected" type="card">
         <Tab title="Nav 1">Content 1</Tab>
         <Tab title="Nav 2">Content 2</Tab>
       </Tabs>
