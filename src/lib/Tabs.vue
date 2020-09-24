@@ -1,6 +1,7 @@
 <template>
   <div class="neat-tabs">
-    <div class="neat-tabs-nav">
+    <div class="neat-tabs-nav"
+      ref="navContainer">
       <div class="neat-tabs-nav-item"
         v-for="(slot, index) in defaultSlots" :key="index"
         :ref="el => { if (el) navItems[index] = el }"
@@ -19,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, onUpdated } from 'vue'
 import Tab from './Tab.vue'
 export default {
   props: {
@@ -30,12 +31,25 @@ export default {
   setup(props, context) {
     const navItems = ref<HTMLDivElement>([])
     const underline = ref<HTMLDivElement>(null)
-    onMounted(()=> {
+    const navContainer = ref<HTMLDivElement>(null)
+    onMounted(() => {
       const divs = navItems.value
-      const { width } =
+      const selectedDiv =
         divs.filter(div => div.classList.contains('selected'))[0]
-          .getBoundingClientRect()
-      underline.value.style.width = width + 'px'
+      const { width: selectedWidth, left: selectedLeft } =
+        selectedDiv.getBoundingClientRect()
+      const { left: navLeft } = navContainer.value.getBoundingClientRect()
+      underline.value.style.width = selectedWidth + 'px'
+      underline.value.style.left = (selectedLeft - navLeft) + 'px'
+    })
+    onUpdated(() => {
+      const divs = navItems.value
+      const selectedDiv =
+        divs.filter(div => div.classList.contains('selected'))[0]
+      const { width: selectedWidth, left: selectedLeft } =
+        selectedDiv.getBoundingClientRect()
+      const { left: navLeft } = navContainer.value.getBoundingClientRect()
+      underline.value.style.left = (selectedLeft - navLeft) + 'px'
     })
     const defaultSlots = context.slots.default()
     defaultSlots.forEach(slot => {
@@ -48,7 +62,8 @@ export default {
         return slot.props.title === props.selected
       })[0]
     })
-    return { defaultSlots, selectedContent, navItems, underline }
+    return { defaultSlots, selectedContent,
+      navItems, underline, navContainer }
   }
 }
 </script>
@@ -79,6 +94,7 @@ export default {
       left: 0;
       bottom: -1px;
       width: 100px;
+      transition: all 250ms;
     }
   }
   &-content {
