@@ -2,23 +2,28 @@
   <div class="neat-tabs">
     <div class="neat-tabs-nav">
       <div class="neat-tabs-nav-item"
-        v-for="(slot, index) in defaultSlots"
-        :key="index">
+        v-for="(slot, index) in defaultSlots" :key="index"
+        @click="$emit('update:selected', slot.props.title)"
+        :class="{selected: slot.props.title === selected}">
         {{slot.props.title}}
       </div>
     </div>
     <div class="neat-tabs-content">
       <component class="neat-tabs-content-item"
-        v-for="(slot, index) in defaultSlots"
-        :key="index"
-        :is="slot" />
+        :is="selectedContent" :key="selected" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
 import Tab from './Tab.vue'
 export default {
+  props: {
+    selected: {
+      type: String
+    }
+  },
   setup(props, context) {
     const defaultSlots = context.slots.default()
     defaultSlots.forEach(slot => {
@@ -26,7 +31,12 @@ export default {
         throw new Error('Children of Tabs must be of type Tab')
       }
     })
-    return { defaultSlots }
+    const selectedContent = computed(() => {
+      return defaultSlots.filter(slot => {
+        return slot.props.title === props.selected
+      })[0]
+    })
+    return { defaultSlots, selectedContent }
   }
 }
 </script>
