@@ -4,7 +4,7 @@
       ref="navContainer">
       <div class="neat-tabs-nav-item"
         v-for="(slot, index) in defaultSlots" :key="index"
-        :ref="el => { if (el) navItems[index] = el }"
+        :ref="el => { if (slot.props.title === selected) selectedNav = el }"
         @click="$emit('update:selected', slot.props.title)"
         :class="{selected: slot.props.title === selected}">
         {{slot.props.title}}
@@ -29,28 +29,18 @@ export default {
     }
   },
   setup(props, context) {
-    const navItems = ref<HTMLDivElement>([])
-    const underline = ref<HTMLDivElement>(null)
     const navContainer = ref<HTMLDivElement>(null)
-    onMounted(() => {
-      const divs = navItems.value
-      const selectedDiv =
-        divs.filter(div => div.classList.contains('selected'))[0]
+    const selectedNav = ref<HTMLDivElement>(null)
+    const underline = ref<HTMLDivElement>(null)
+    const setUnderlineStyle = () => {
       const { width: selectedWidth, left: selectedLeft } =
-        selectedDiv.getBoundingClientRect()
+        selectedNav.value.getBoundingClientRect()
       const { left: navLeft } = navContainer.value.getBoundingClientRect()
       underline.value.style.width = selectedWidth + 'px'
       underline.value.style.left = (selectedLeft - navLeft) + 'px'
-    })
-    onUpdated(() => {
-      const divs = navItems.value
-      const selectedDiv =
-        divs.filter(div => div.classList.contains('selected'))[0]
-      const { width: selectedWidth, left: selectedLeft } =
-        selectedDiv.getBoundingClientRect()
-      const { left: navLeft } = navContainer.value.getBoundingClientRect()
-      underline.value.style.left = (selectedLeft - navLeft) + 'px'
-    })
+    }
+    onMounted(setUnderlineStyle)
+    onUpdated(setUnderlineStyle)
     const defaultSlots = context.slots.default()
     defaultSlots.forEach(slot => {
       if (slot.type !== Tab) {
@@ -63,7 +53,7 @@ export default {
       })[0]
     })
     return { defaultSlots, selectedContent,
-      navItems, underline, navContainer }
+      selectedNav, underline, navContainer }
   }
 }
 </script>
