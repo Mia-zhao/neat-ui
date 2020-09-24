@@ -1,8 +1,9 @@
 <template>
   <div>
-    Tabs 组件
-    <component :is="defaultSlots[0]" />
-    <component :is="defaultSlots[1]" />
+    <div v-for="(slot, index) in defaultSlots" :key="index">
+      <div>{{slot.props.title}}</div>
+      <component :is="slot" />
+    </div>
   </div>
 </template>
 
