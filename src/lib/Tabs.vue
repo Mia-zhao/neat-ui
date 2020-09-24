@@ -1,8 +1,17 @@
 <template>
-  <div>
-    <div v-for="(slot, index) in defaultSlots" :key="index">
-      <div>{{slot.props.title}}</div>
-      <component :is="slot" />
+  <div class="neat-tabs">
+    <div class="neat-tabs-nav">
+      <div class="neat-tabs-nav-item"
+        v-for="(slot, index) in defaultSlots"
+        :key="index">
+        {{slot.props.title}}
+      </div>
+    </div>
+    <div class="neat-tabs-content">
+      <component class="neat-tabs-content-item"
+        v-for="(slot, index) in defaultSlots"
+        :key="index"
+        :is="slot" />
     </div>
   </div>
 </template>
@@ -21,3 +30,28 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import './neat-style.scss';
+.neat-tabs {
+  &-nav {
+    display: flex;
+    color: $color-grey-900;
+    border-bottom: 1px solid $color-grey-400;
+    &-item {
+      padding: 8px 0;
+      margin: 0 16px;
+      cursor: pointer;
+      &:first-child {
+        margin-left: 0;
+      }
+      &.selected {
+        color: $color-lightblue-700;
+      }
+    }
+  }
+  &-content {
+    padding: 8px 0;
+  }
+}
+</style>
