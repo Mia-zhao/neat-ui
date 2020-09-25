@@ -6,7 +6,7 @@
       <h2 v-if="selectedLanguage==='EN'">A simple and clean UI framework</h2>
       <h2 v-if="selectedLanguage==='ZH'">一个简易干净的 UI 框架</h2>
       <p class="actions">
-        <a class="light" href="https://github.com">Github</a>
+        <a class="light" href="https://github.com">GitHub</a>
         <router-link to="/doc" v-if="selectedLanguage==='EN'">
           Start
         </router-link>
@@ -68,7 +68,7 @@ export default {
     text-align: center
   }
   > .actions {
-    margin-top: 40px;
+    margin-top: 60px;
     padding: 8px 0;
     a {
       font-size: 20px;
@@ -76,25 +76,29 @@ export default {
       color: #ffffff;
       background: #09c3ff;
       display: inline-block;
-      $h: 40px;
+      $h: 42px;
       height: $h;
+      line-height: $h;
       border-radius: $h / 2;
-      padding: 6px 20px;
+      min-width: 100px;
+      text-align: center;
       &.light {
-        background: #fff;
-        color: #1c2f5a;
-        border: 2px solid #e8eefa;
+       background: #fff;
+       color: #1c2f5a;
+       border: 1px solid #BDBDBD;
       }
     }
   }
   > .info {
     position: absolute;
-    bottom: 20%;
+    bottom: 8vh;
     display: flex;
     align-items: center;
+    line-height: 36px;
     > .icon {
       width: 24px;
       height: 24px;
+      padding: auto;
     }
     > span {
       font-size: 24px;
