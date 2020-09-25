@@ -6,8 +6,8 @@
       </svg>
     </div>
     <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+      <li>En</li>
+      <li>中文</li>
     </ul>
     <svg @click="toggleMenu" class="toggleAsideMenu" aria-hidden="true">
       <use xlink:href="#icon-menu"></use>
@@ -42,16 +42,21 @@ export default {
   z-index: 10;
   justify-content: center;
   align-items: center;
+  color: #56658e;
   >.logo {
-    max-width: 6em;
     margin-right: auto;
+    .icon {
+      width: 32px;
+      height: 32px;
+    }
   }
   >.menu {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
     >li {
-      margin: 0 1em;
+      line-height: 32px;
+      margin: 0 8px;
     }
   }
   > .toggleAsideMenu {
