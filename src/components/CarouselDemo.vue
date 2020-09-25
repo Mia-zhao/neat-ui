@@ -14,6 +14,26 @@
         <div>4</div>
       </Carousel>
     </div>
+    <h3>Carousel auto play</h3>
+    <div class="example-carousel2">
+      <Carousel v-model:selectedIndex="selectedIndex"
+        autoPlay>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+      </Carousel>
+    </div>
+    <h3>Carousel bar slide</h3>
+    <div class="example-carousel3">
+      <Carousel v-model:selectedIndex="selectedIndex"
+        slideStyle="bar">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+      </Carousel>
+    </div>
   </section>
   <section class="properties">
 

@@ -3,7 +3,8 @@
     <div class="neat-carousel-content">
 
     </div>
-    <div class="neat-carousel-slide">
+    <div class="neat-carousel-slide"
+      :class="{[`neat-carousel-slide-${slideStyle}`]: slideStyle}">
       <div class="neat-carousel-slide-item"
         v-for="(slot, index) in slots" :key="index"
         @click="$emit('update:selectedIndex', index)"
@@ -42,15 +43,24 @@ export default {
     display: flex;
     justify-content: center;
     &-item {
-      margin: 0 4px;
-      width: 16px;
-      height: 5px;
-      border-radius: $radius;
+      margin: 0 2px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       background: $color-grey-400;
       transition: all 250ms;
       &.active {
         background: black;
-        width: 32px;
+      }
+    }
+  }
+  &-slide-bar {
+    .neat-carousel-slide-item {
+      width: 12px;
+      height: 5px;
+      border-radius: $radius;
+      &.active {
+        width: 20px;
       }
     }
   }
