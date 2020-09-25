@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-wrapper">
     <Topnav />
     <div class="banner">
       <h1>Neat UI</h1>
@@ -23,13 +23,15 @@ export default {
 
 <style lang="scss" scoped>
 @import '../lib/neat-style.scss';
+.nav-wrapper {
+  background: #fff;
+}
 .banner {
   padding: 100px 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: $color-lightblue-100;
   >.actions {
     padding: 8px 0;
     a {

@@ -33,7 +33,6 @@ export default {
 <style lang="scss" scoped>
 @import '../lib/neat-style.scss';
 .topnav {
-  background: $color-lightblue-800;
   display: flex;
   padding: 16px;
   position: fixed;
