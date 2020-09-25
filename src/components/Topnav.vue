@@ -9,7 +9,9 @@
       <li>En</li>
       <li>中文</li>
     </ul>
-    <svg @click="toggleMenu" class="toggleAsideMenu" aria-hidden="true">
+    <svg v-if="toggleMenuVisible"
+      @click="toggleMenu" class="toggleAsideMenu"
+      aria-hidden="true">
       <use xlink:href="#icon-menu"></use>
     </svg>
   </div>
@@ -20,6 +22,12 @@ import { inject } from 'vue'
 import { MENU_VISIBLE } from '../constants/Refs'
 
 export default {
+  props: {
+    toggleMenuVisible: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
     const toggleMenu = () => {
