@@ -7,6 +7,7 @@ import SwitchDemo from './components/SwitchDemo.vue'
 import ModalDemo from './components/ModalDemo.vue'
 import TabsDemo from './components/TabsDemo.vue'
 import CarouselDemo from './components/CarouselDemo.vue'
+import Intro from './views/Intro.vue'
 
 const history = createWebHashHistory()
 export const router = createRouter({
@@ -20,6 +21,9 @@ export const router = createRouter({
       children: [
         {
           path: '', component: DemoHome
+        },
+        {
+          path: 'intro', component: Intro
         },
         {
           path: 'button', component: ButtonDemo
