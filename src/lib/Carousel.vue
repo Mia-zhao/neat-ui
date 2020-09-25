@@ -1,7 +1,16 @@
 <template>
   <div class="neat-carousel">
-    <div class="neat-carousel-content">
-
+    <div class="neat-carousel-content-wrapper">
+      <div class="neat-carousel-content">
+        <component class="neat-carousel-content-item"
+          :class="{active: index === selectedIndex,
+            prev: selectedIndex === 0 ?
+              index === slots.length-1 : index === selectedIndex-1,
+            next: selectedIndex === slots.length-1 ?
+              index === 0 : index === selectedIndex+1}"
+          v-for="(slot, index) in slots" :key="index"
+          :is="slot" />
+      </div>
     </div>
     <div class="neat-carousel-slide"
       :class="{[`neat-carousel-slide-${slideStyle}`]: slideStyle}">
@@ -15,6 +24,7 @@
 </template>
 
 <script lang="ts">
+import { computed } from 'vue'
 export default {
   props: {
     slideStyle: {
@@ -39,6 +49,34 @@ export default {
 <style lang="scss">
 @import './neat-style.scss';
 .neat-carousel {
+  transform-style: preserve-3d;
+  &-content-wrapper {
+    overflow: hidden;
+  }
+  &-content {
+    display: flex;
+    justify-content: center;
+    &-item {
+      position: absolute;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      margin: auto;
+      padding: 1rem 4rem;
+      z-index: 100;
+      transition: transform 300ms, opacity 300ms, z-index 300ms;
+      &.active {
+        opacity: 1;
+        position: relative;
+        z-index: 900;
+      }
+      &.prev, &.next {
+        z-index: 800;
+      }
+      &.prev { transform: translateX(-100%); }
+      &.next { transform: translateX(100%); }
+    }
+  }
   &-slide {
     display: flex;
     justify-content: center;
@@ -49,6 +87,7 @@ export default {
       border-radius: 50%;
       background: $color-grey-400;
       transition: all 250ms;
+      cursor: pointer;
       &.active {
         background: black;
       }
