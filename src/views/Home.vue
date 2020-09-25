@@ -3,20 +3,39 @@
     <Topnav />
     <div class="banner">
       <h1>Neat UI</h1>
-      <h2>一个简易干净的 UI 框架</h2>
+      <h2 v-if="selectedLanguage==='EN'">A simple and clean UI framework</h2>
+      <h2 v-if="selectedLanguage==='ZH'">一个简易干净的 UI 框架</h2>
       <p class="actions">
         <a class="light" href="https://github.com">Github</a>
-        <router-link to="/doc">开始</router-link>
+        <router-link to="/doc" v-if="selectedLanguage==='EN'">
+          Start
+        </router-link>
+        <router-link to="/doc" v-if="selectedLanguage==='ZH'">
+          开始
+        </router-link>
       </p>
+      <a class="info" href="https://v3.vuejs.org/">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-Vue"></use>
+        </svg>
+        <span v-if="selectedLanguage==='EN'">Based on Vue 3</span>
+        <span v-if="selectedLanguage==='ZH'">基于 Vue 3</span>
+      </a>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { inject } from 'vue'
+import { LANG } from '../constants/Refs'
 import Topnav from '../components/Topnav.vue'
 export default {
   components: {
     Topnav
+  },
+  setup() {
+    const  selectedLanguage = inject<Ref<String>>(LANG)
+    return { selectedLanguage }
   }
 }
 </script>
@@ -25,6 +44,8 @@ export default {
 @import '../lib/neat-style.scss';
 .nav-wrapper {
   background: #fff;
+  height: 100vh;
+  position: relative;
 }
 .banner {
   color: #1a3059;
@@ -33,9 +54,20 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  h1 { font-size: 56px; padding: 10px; margin-bottom: 20px}
-  h2 { font-size: 36px; padding: 6px; }
-  >.actions {
+  h1 {
+    font-size: 56px;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: default; 
+  }
+  h2 {
+    font-size: 36px;
+    padding: 6px;
+    cursor: default;
+    min-height: 60px;
+    text-align: center
+  }
+  > .actions {
     margin-top: 40px;
     padding: 8px 0;
     a {
@@ -53,6 +85,20 @@ export default {
         color: #1c2f5a;
         border: 2px solid #e8eefa;
       }
+    }
+  }
+  > .info {
+    position: absolute;
+    bottom: 20%;
+    display: flex;
+    align-items: center;
+    > .icon {
+      width: 24px;
+      height: 24px;
+    }
+    > span {
+      font-size: 24px;
+      margin: 0 8px;
     }
   }
 }

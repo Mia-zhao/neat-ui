@@ -1,5 +1,7 @@
 const MENU_VISIBLE = "MENU_VISIBLE"
+const LANG = "LANGUAGE"
 
 export {
-  MENU_VISIBLE
+  MENU_VISIBLE,
+  LANG
 }

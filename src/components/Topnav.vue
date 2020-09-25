@@ -1,13 +1,19 @@
 <template>
   <div class="topnav">
-    <div class="logo">
+    <router-link to="/" class="logo">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-logo"></use>
       </svg>
-    </div>
+    </router-link>
     <ul class="menu">
-      <li>En</li>
-      <li>中文</li>
+      <li @click="language='EN'"
+        :class="{selected: language === 'EN'}">
+        En
+      </li>
+      <li @click="language='ZH'"
+        :class="{selected: language === 'ZH'}">
+        中文
+      </li>
     </ul>
     <svg v-if="toggleMenuVisible"
       @click="toggleMenu" class="toggleAsideMenu"
@@ -19,7 +25,7 @@
 
 <script lang="ts">
 import { inject } from 'vue'
-import { MENU_VISIBLE } from '../constants/Refs'
+import { MENU_VISIBLE, LANG } from '../constants/Refs'
 
 export default {
   props: {
@@ -30,16 +36,18 @@ export default {
   },
   setup() {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
+    const language = inject<Ref<String>>(LANG)
     const toggleMenu = () => {
       menuVisible.value = !menuVisible.value
     }
-    return { toggleMenu }
+    return { toggleMenu, language }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../lib/neat-style.scss';
+$color: #56658e;
 .topnav {
   display: flex;
   padding: 16px;
@@ -50,7 +58,7 @@ export default {
   z-index: 10;
   justify-content: center;
   align-items: center;
-  color: #56658e;
+  color: $color;
   >.logo {
     margin-right: auto;
     .icon {
@@ -62,9 +70,16 @@ export default {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    >li {
+    > li {
       line-height: 32px;
-      margin: 0 8px;
+      padding: 0 8px;
+      margin: 0 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      &.selected {
+        background: $color;
+        color: #fff;
+      }
     }
   }
   > .toggleAsideMenu {
