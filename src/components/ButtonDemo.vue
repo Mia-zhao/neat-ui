@@ -147,7 +147,7 @@ section {
     min-width: 50%;
     border: 1px solid $color-grey-300;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: $radius;
   }
 }
 </style>

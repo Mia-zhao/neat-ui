@@ -69,7 +69,7 @@ export default {
 @import './neat-style.scss';
 .neat-modal {
   background: white;
-  border-radius: 4px;
+  border-radius: $radius;
   box-shadow: 0 0 3px fade_out(black, 0.5);
   min-width: 15em;
   max-width: 90%;

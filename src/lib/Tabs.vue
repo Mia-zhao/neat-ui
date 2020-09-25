@@ -93,7 +93,7 @@ export default {
       bottom: -1px;
       height: 3px;
       width: 100px;
-      border-radius: 4px;
+      border-radius: $radius;
       background: $color-lightblue-700;
       transition: all 250ms;
     }

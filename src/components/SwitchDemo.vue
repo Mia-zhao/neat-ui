@@ -56,7 +56,7 @@ section {
   > div {
     min-width: 50%;
     border: 1px solid $color-grey-300;
-    border-radius: 4px;
+    border-radius: $radius;
   }
 }
 </style>

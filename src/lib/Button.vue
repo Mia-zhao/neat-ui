@@ -79,7 +79,7 @@ button.neat-button.neat-button {
   background: $color-lightblue-700;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: $radius;
   box-shadow: 0 1px 0 fade-out (black, 0.95);
   & + & {
     margin-left: 8px;
