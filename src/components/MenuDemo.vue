@@ -7,7 +7,12 @@
   <section class="examples">
     <div class="example-menu">
       <h3>Menu</h3>
-      <Menu />
+      <Menu>
+        <Submenu title="SubMenu 1">
+          <Menuitem>Menu 1</Menuitem>
+          <Menuitem>Menu 2</Menuitem>
+        </Submenu>
+      </Menu>
     </div>
   </section>
   <section class="properties">
@@ -17,9 +22,13 @@
 
 <script lang="ts">
 import Menu from '../lib/Menu.vue'
+import Submenu from '../lib/SubMenu.vue'
+import Menuitem from '../lib/MenuItem.vue'
 export default {
   components: {
-    Menu
+    Menu,
+    Submenu,
+    Menuitem
   }
 }
 </script>
