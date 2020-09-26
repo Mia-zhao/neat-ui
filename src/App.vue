@@ -16,7 +16,7 @@ export default {
   name: 'App',
   setup() {
     const menuVisible = ref(getScreenWidth() > WIDTH_THRESHOLD)
-    const language = ref<String>('ZH')
+    const language = ref<String>('zh')
     provide(MENU_VISIBLE, menuVisible)
     provide(LANG, language)
 

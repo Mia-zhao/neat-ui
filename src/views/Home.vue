@@ -3,23 +3,18 @@
     <Topnav />
     <div class="banner">
       <h1>Neat UI</h1>
-      <h2 v-if="selectedLanguage==='EN'">A simple and clean UI framework</h2>
-      <h2 v-if="selectedLanguage==='ZH'">一个简易干净的 UI 框架</h2>
+      <i18n-t tag="h2" keypath="message.homeH2" :locale="selectedLanguage" />
       <p class="actions">
         <a class="light" href="https://github.com">GitHub</a>
-        <router-link to="/doc" v-if="selectedLanguage==='EN'">
-          Start
-        </router-link>
-        <router-link to="/doc" v-if="selectedLanguage==='ZH'">
-          开始
+        <router-link to="/doc">
+          {{ $t('message.homeStartButton', {}, { locale: selectedLanguage }) }}
         </router-link>
       </p>
       <a class="info" href="https://v3.vuejs.org/">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Vue"></use>
         </svg>
-        <span v-if="selectedLanguage==='EN'">Based on Vue 3</span>
-        <span v-if="selectedLanguage==='ZH'">基于 Vue 3</span>
+        <i18n-t tag="span" keypath="message.homeMessage" :locale="selectedLanguage" />
       </a>
     </div>
   </div>
@@ -27,6 +22,7 @@
 
 <script lang="ts">
 import { inject } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { LANG } from '../constants/Refs'
 import Topnav from '../components/Topnav.vue'
 export default {
@@ -35,7 +31,7 @@ export default {
   },
   setup() {
     const  selectedLanguage = inject<Ref<String>>(LANG)
-    return { selectedLanguage }
+    return { selectedLanguage, ...useI18n }
   }
 }
 </script>

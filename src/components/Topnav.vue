@@ -6,12 +6,12 @@
       </svg>
     </router-link>
     <ul class="menu">
-      <li @click="language='EN'"
-        :class="{selected: language === 'EN'}">
+      <li @click="language='en'"
+        :class="{selected: language === 'en'}">
         En
       </li>
-      <li @click="language='ZH'"
-        :class="{selected: language === 'ZH'}">
+      <li @click="language='zh'"
+        :class="{selected: language === 'zh'}">
         中文
       </li>
     </ul>
