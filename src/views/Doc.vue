@@ -60,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../lib/neat-style.scss';
+@import '../assets/style/helper.scss';
 .layout {
   display: flex;
   flex-direction: column;
@@ -88,7 +89,7 @@ export default {
   }
 }
 aside {
-  background: $color-lightblue-100;
+  background: $aside_bg_color;
   width: 150px;
   padding: 16px;
   position: fixed;

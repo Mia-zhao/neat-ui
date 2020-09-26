@@ -38,13 +38,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '../lib/neat-style.scss';
+@import '../assets/style/helper.scss';
 .nav-wrapper {
   background: #fff;
   height: 100vh;
   position: relative;
 }
 .banner {
-  color: #1a3059;
+  color: $text_color;
   padding: 100px 0;
   display: flex;
   justify-content: center;
