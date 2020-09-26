@@ -6,6 +6,7 @@ import ButtonDemo from './components/ButtonDemo.vue'
 import SwitchDemo from './components/SwitchDemo.vue'
 import ModalDemo from './components/ModalDemo.vue'
 import TabsDemo from './components/TabsDemo.vue'
+import MenuDemo from './components/MenuDemo.vue'
 import CarouselDemo from './components/CarouselDemo.vue'
 import Intro from './views/Intro.vue'
 import GettingStarted from './views/GettingStarted.vue'
@@ -26,6 +27,7 @@ export const router = createRouter({
         { path: 'switch', component: SwitchDemo },
         { path: 'modal', component: ModalDemo },
         { path: 'tabs', component: TabsDemo },
+        { path: 'menu', component: MenuDemo },
         { path: 'carousel', component: CarouselDemo }
       ]
     }

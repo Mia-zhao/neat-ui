@@ -30,6 +30,9 @@
             <router-link to="/doc/tabs">Tabs 组件</router-link>
           </li>
           <li>
+            <router-link to="/doc/menu">Menu 组件</router-link>
+          </li>
+          <li>
             <router-link to="/doc/carousel">Carousel 组件</router-link>
           </li>
         </ol>
