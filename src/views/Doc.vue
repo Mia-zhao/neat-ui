@@ -1,41 +1,42 @@
 <template>
   <div class="layout">
-    <Topnav toggleMenuVisible class="nav"/>
+    <Topnav toggleMenuVisible class="nav" />
     <div class="content">
       <aside v-if="menuVisible">
-        <h2>文档</h2>
-        <ol>
-          <li>
-            <router-link to="/doc/intro">介绍</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/install">安装</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/getting-started">开始使用</router-link>
-          </li>
-        </ol>
-        <h2>组件列表</h2>
-        <ol>
-          <li>
-            <router-link to="/doc/button">Button 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/switch">Switch 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/modal">Modal 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/tabs">Tabs 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/menu">Menu 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/carousel">Carousel 组件</router-link>
-          </li>
-        </ol>
+        <Menu>
+          <Submenu :title="$t('message.menu1', {}, { locale: selectedLanguage })">
+            <Menuitem @click="$router.push('/doc/intro')">
+            {{ $t('message.menu1_intro', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/install')">
+            {{ $t('message.menu1_install', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/getting-started')">
+            {{ $t('message.menu1_getting_started', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+          </Submenu>
+          <Submenu :title="$t('message.menu2', {}, { locale: selectedLanguage })">
+            <Menuitem @click="$router.push('/doc/button')">
+            {{ $t('message.menu2_button', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/switch')">
+            {{ $t('message.menu2_switch', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/tabs')">
+            {{ $t('message.menu2_tabs', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/menu')">
+            {{ $t('message.menu2_menu', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/modal')">
+            {{ $t('message.menu2_modal', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+            <Menuitem @click="$router.push('/doc/carousel')">
+            {{ $t('message.menu2_carousel', {}, { locale: selectedLanguage }) }}
+            </Menuitem>
+          </Submenu>
+        </Menu>
+
       </aside>
       <main>
         <router-view />
@@ -45,15 +46,25 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue'
+import { computed, inject } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Topnav from '../components/Topnav.vue'
-import { MENU_VISIBLE } from '../constants/Refs'
+import Menu from '../lib/Menu.vue'
+import Submenu from '../lib/SubMenu.vue'
+import Menuitem from '../lib/MenuItem.vue'
+import { MENU_VISIBLE, LANG } from '../constants/Refs'
 
 export default {
-  components: { Topnav },
-  setup() {
+  components: {
+    Topnav,
+    Menu,
+    Submenu,
+    Menuitem
+  },
+  setup(props, context, t) {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
-    return { menuVisible }
+    const selectedLanguage = inject<Ref<String>>(LANG)
+    return { menuVisible, selectedLanguage, ...useI18n }
   }
 }
 </script>
@@ -71,7 +82,7 @@ export default {
   > .content {
     flex-grow: 1;
     padding-top: 60px;
-    padding-left: 156px;
+    padding-left: 306px;
     @media (max-width: 500px) {
       padding-left: 0;
     }
@@ -90,21 +101,13 @@ export default {
 }
 aside {
   background: $aside_bg_color;
-  width: 150px;
+  width: 300px;
   padding: 16px;
   position: fixed;
   top: 0;
   left: 0;
   padding-top: 70px;
   height: 100%;
-  >h2 {
-    margin-bottom: 4px;
-  }
-  >ol {
-    >li {
-      padding: 4px 0;
-    }
-  }
 }
 main {
   overflow: auto;
