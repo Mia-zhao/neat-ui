@@ -13,10 +13,10 @@
     </div>
     <div class="neat-sub-menu-children"
       :class="{collapsed: collapsed}">
-      <component class="neat-menu-item"
-        :class="{selected: selectedMenu===slot.props.menuKey}"
+      <component
+        :class="{selected: selectedMenu===slot.props.menuKey,
+        'neat-menu-item': slot.type===MenuItem}"
         v-for="slot in slots" :key="slot.props.menuKey"
-        @click="selectedMenu=slot.props.menuKey"
         :is="slot"/>
     </div>
   </div>
@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { ref, inject } from 'vue'
-import Menuitem from './MenuItem.vue'
+import MenuItem from './MenuItem.vue'
 export default {
   props: {
     title: {
@@ -53,13 +53,14 @@ export default {
     const selectedMenu = inject<Ref<String>>('selected-menu')
     const slots = context.slots.default()
     slots.forEach(slot => {
-      if (slot.type !== Menuitem) {
+      const hmrId = slot.type.__hmrId
+      if (!(/^.*(MenuItem)|(SubMenu).vue$/.test(hmrId))) {
         throw new Error(
-          'Children of SubMenu must be of type or MenuItem'
+          'Children of SubMenu must be of type SubMenu or MenuItem'
         )
       }
     })
-    return { slots, collapsed, selectedMenu }
+    return { slots, collapsed, selectedMenu, MenuItem }
   }
 }
 </script>
@@ -67,15 +68,12 @@ export default {
 <style lang="scss">
 @import './neat-style.scss';
 .neat-sub-menu {
-  max-width: 300px;
   color: $color-grey-600;
   > .neat-sub-menu-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 4px 8px;
-    margin: 4px 0;
     > span {
       font-size: 16px;
     }
@@ -85,32 +83,49 @@ export default {
       height: 12px;
     }
     &.collapsed, &:hover {
-      > span {
-        color: $color-lightblue-700;
-      }
-      > .icon {
-        fill: $color-lightblue-700;
-      }
+      > span { color: $color-lightblue-700; }
+      > .icon { fill: $color-lightblue-700; }
     }
-    &.collapsed > .icon {
-      transform: rotateX(180deg);
-    }
+    &.collapsed > .icon { transform: rotateX(180deg); }
+  }
+}
+
+.neat-sub-menu-children {
+  display: none;
+  &.collapsed { display: block; }
+  > .neat-menu-item {
+    font-size: 14px;
+    cursor: pointer;
+    &.selected { color: $color-lightblue-700; }
+    &.selected::after { background: rgba(129, 212, 250, 0.3); }
+  }
+}
+
+.neat-menu {
+  max-width: 300px;
+  > .neat-sub-menu {
+    position: relative;
+  }
+}
+.neat-sub-menu {
+  > .neat-sub-menu-title {
+    padding: 0.25em 0.5em 0.25em 0;
   }
   > .neat-sub-menu-children {
-    display: none;
-    &.collapsed {
-      display: block;
-    }
+    padding-left: 1em;
     > .neat-menu-item {
-      font-size: 14px;
-      padding: 4px 24px;
-      margin: 4px 0;
-      cursor: pointer;
-      &.selected {
-        color: $color-lightblue-700;
-        background: $color-lightblue-100;
-      }
+      line-height: 1em;
+      margin: 0.5em 0;
+      padding: 0.5em 0;
     }
   }
+}
+.neat-menu-item::after {
+  content: '';
+  height: 2em;
+  position: absolute;
+  left: 0;
+  margin-top: -0.5em;
+  right: 0;
 }
 </style>
