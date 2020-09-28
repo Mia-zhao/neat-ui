@@ -1,20 +1,27 @@
 <template>
   <div class="neat-menu">
     <component class="neat-menu-children"
-      v-for="(slot, index) in slots" :key="index"
+      v-for="slot in slots"
+      :key="slot.props.menuKey"
       :is="slot"/>
   </div>
 </template>
 
 <script lang="ts">
-import Submenu from './SubMenu.vue'
-import Menuitem from './MenuItem.vue'
+import { ref, provide } from 'vue'
+import SubMenu from './SubMenu.vue'
+import MenuItem from './MenuItem.vue'
 export default {
   setup(props, context) {
+    const selectedMenu = ref<String>(null)
+    provide('selected-menu', selectedMenu)
+
     const slots = context.slots.default()
     slots.forEach(slot => {
-      if (slot.type !== Submenu && slot.type !== Menuitem) {
-        throw new Error('Children of Menu must be of type SubMenu or MenuItem')
+      if (slot.type !== SubMenu && slot.type !== MenuItem) {
+        throw new Error(
+          'Children of Menu must be of type SubMenu or MenuItem'
+        )
       }
     })
     return { slots }

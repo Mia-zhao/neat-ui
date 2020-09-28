@@ -14,21 +14,26 @@
     <div class="neat-sub-menu-children"
       :class="{collapsed: collapsed}">
       <component class="neat-menu-item"
-        :class="{selected: selectedIndex===index}"
-        v-for="(slot, index) in slots" :key="index"
-        @click="selectedIndex=index"
+        :class="{selected: selectedMenu===slot.props.menuKey}"
+        v-for="slot in slots" :key="slot.props.menuKey"
+        @click="selectedMenu=slot.props.menuKey"
         :is="slot"/>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref, inject } from 'vue'
 import Menuitem from './MenuItem.vue'
 export default {
   props: {
     title: {
-      type: String
+      type: String,
+      required: true
+    },
+    menuKey: {
+      type: String,
+      required: true
     },
     defaultCollapsed: {
       type: Boolean,
@@ -45,14 +50,16 @@ export default {
   },
   setup(props, context) {
     const collapsed = ref<Boolean>(props.defaultCollapsed)
-    const selectedIndex = ref<Number>(null)
+    const selectedMenu = inject<Ref<String>>('selected-menu')
     const slots = context.slots.default()
     slots.forEach(slot => {
       if (slot.type !== Menuitem) {
-        throw new Error('Children of SubMenu must be of type or MenuItem')
+        throw new Error(
+          'Children of SubMenu must be of type or MenuItem'
+        )
       }
     })
-    return { slots, collapsed, selectedIndex }
+    return { slots, collapsed, selectedMenu }
   }
 }
 </script>
