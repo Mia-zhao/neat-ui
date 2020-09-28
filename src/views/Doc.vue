@@ -107,7 +107,7 @@ export default {
   > main {
     flex-grow: 1;
     padding: 16px;
-    background: $color-grey-100;
+    background: #fff;
   }
 }
 aside {
