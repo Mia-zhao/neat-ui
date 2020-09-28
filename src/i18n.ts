@@ -18,7 +18,9 @@ const i18n = createI18n({
         menu2_tabs: 'Tabs',
         menu2_menu: 'Menu',
         menu2_modal: 'Modal',
-        menu2_carousel: 'Carousel'
+        menu2_carousel: 'Carousel',
+        intro_1: 'Neat UI is a UI component library based on Vue 3 and TypeScript.',
+        intro_2: 'This UI component library is created independenty by myself, with my best effort to not use any third libraries. This product website is developed independently as well.'
       }
     },
     zh: {
@@ -36,7 +38,9 @@ const i18n = createI18n({
         menu2_tabs: 'Tabs 标签页',
         menu2_menu: 'Menu 菜单',
         menu2_modal: 'Modal 对话框',
-        menu2_carousel: 'Carousel 走马灯'
+        menu2_carousel: 'Carousel 走马灯',
+        intro_1: 'Neat UI 是一款基于 Vue 3 以及 TypeScript 的 UI 组件库。',
+        intro_2: '这个组件库是个人独立总结创作的，尽量不采用第三方库。此官方网站也是个人独立开发的。'
       }
     }
   }
