@@ -4,34 +4,45 @@
     <div class="content">
       <aside v-if="menuVisible">
         <Menu>
-          <Submenu :title="$t('message.menu1', {}, { locale: selectedLanguage })">
-            <Menuitem @click="$router.push('/doc/intro')">
+          <Submenu :title="$t('message.menu1', {}, { locale: selectedLanguage })"
+            menuKey="menu1">
+            <Menuitem @click="$router.push('/doc/intro')"
+              menuKey="1">
             {{ $t('message.menu1_intro', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/install')">
+            <Menuitem @click="$router.push('/doc/install')"
+              menuKey="2">
             {{ $t('message.menu1_install', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/getting-started')">
+            <Menuitem @click="$router.push('/doc/getting-started')"
+              menuKey="3">
             {{ $t('message.menu1_getting_started', {}, { locale: selectedLanguage }) }}
             </Menuitem>
           </Submenu>
-          <Submenu :title="$t('message.menu2', {}, { locale: selectedLanguage })">
-            <Menuitem @click="$router.push('/doc/button')">
+          <Submenu :title="$t('message.menu2', {}, { locale: selectedLanguage })"
+            menuKey="menu2">
+            <Menuitem @click="$router.push('/doc/button')"
+              menuKey="4">
             {{ $t('message.menu2_button', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/switch')">
+            <Menuitem @click="$router.push('/doc/switch')"
+              menuKey="5">
             {{ $t('message.menu2_switch', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/tabs')">
+            <Menuitem @click="$router.push('/doc/tabs')"
+              menuKey="6">
             {{ $t('message.menu2_tabs', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/menu')">
+            <Menuitem @click="$router.push('/doc/menu')"
+              menuKey="7">
             {{ $t('message.menu2_menu', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/modal')">
+            <Menuitem @click="$router.push('/doc/modal')"
+              menuKey="8">
             {{ $t('message.menu2_modal', {}, { locale: selectedLanguage }) }}
             </Menuitem>
-            <Menuitem @click="$router.push('/doc/carousel')">
+            <Menuitem @click="$router.push('/doc/carousel')"
+              menuKey="9">
             {{ $t('message.menu2_carousel', {}, { locale: selectedLanguage }) }}
             </Menuitem>
           </Submenu>
