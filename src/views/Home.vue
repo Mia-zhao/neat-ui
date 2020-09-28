@@ -3,35 +3,28 @@
     <Topnav />
     <div class="banner">
       <h1>Neat UI</h1>
-      <i18n-t tag="h2" keypath="message.homeH2" :locale="selectedLanguage" />
+      <i18n-t tag="h2" keypath="message.homeH2" />
       <p class="actions">
         <a class="light" href="https://github.com">GitHub</a>
         <router-link to="/doc">
-          {{ $t('message.homeStartButton', {}, { locale: selectedLanguage }) }}
+          {{ $t('message.homeStartButton', {}, {}) }}
         </router-link>
       </p>
       <a class="info" href="https://v3.vuejs.org/">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-Vue"></use>
         </svg>
-        <i18n-t tag="span" keypath="message.homeMessage" :locale="selectedLanguage" />
+        <i18n-t tag="span" keypath="message.homeMessage" />
       </a>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { inject } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { LANG } from '../constants/Refs'
 import Topnav from '../components/Topnav.vue'
 export default {
   components: {
     Topnav
-  },
-  setup() {
-    const  selectedLanguage = inject<Ref<String>>(LANG)
-    return { selectedLanguage, ...useI18n }
   }
 }
 </script>

@@ -6,12 +6,12 @@
       </svg>
     </router-link>
     <ul class="menu">
-      <li @click="language='en'"
-        :class="{selected: language === 'en'}">
+      <li @click="$i18n.locale='en'"
+        :class="{selected: $i18n.locale === 'en'}">
         En
       </li>
-      <li @click="language='zh'"
-        :class="{selected: language === 'zh'}">
+      <li @click="$i18n.locale='zh'"
+        :class="{selected: $i18n.locale === 'zh'}">
         中文
       </li>
     </ul>
@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { inject } from 'vue'
-import { MENU_VISIBLE, LANG } from '../constants/Refs'
+import { MENU_VISIBLE } from '../constants/Refs'
 
 export default {
   props: {
@@ -36,11 +36,10 @@ export default {
   },
   setup() {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
-    const language = inject<Ref<String>>(LANG)
     const toggleMenu = () => {
       menuVisible.value = !menuVisible.value
     }
-    return { toggleMenu, language }
+    return { toggleMenu }
   }
 }
 </script>

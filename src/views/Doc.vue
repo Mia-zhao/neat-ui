@@ -4,46 +4,46 @@
     <div class="content">
       <aside v-if="menuVisible">
         <Menu>
-          <Submenu :title="$t('message.menu1', {}, { locale: selectedLanguage })"
+          <Submenu :title="$t('message.menu1', {}, {})"
             menuKey="menu1">
             <Menuitem @click="$router.push('/doc/intro')"
               menuKey="1">
-            {{ $t('message.menu1_intro', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu1_intro', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/install')"
               menuKey="2">
-            {{ $t('message.menu1_install', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu1_install', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/getting-started')"
               menuKey="3">
-            {{ $t('message.menu1_getting_started', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu1_getting_started', {}, {}) }}
             </Menuitem>
           </Submenu>
-          <Submenu :title="$t('message.menu2', {}, { locale: selectedLanguage })"
+          <Submenu :title="$t('message.menu2', {}, {})"
             menuKey="menu2">
             <Menuitem @click="$router.push('/doc/button')"
               menuKey="4">
-            {{ $t('message.menu2_button', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu2_button', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/switch')"
               menuKey="5">
-            {{ $t('message.menu2_switch', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu2_switch', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/tabs')"
               menuKey="6">
-            {{ $t('message.menu2_tabs', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu2_tabs', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/menu')"
               menuKey="7">
-            {{ $t('message.menu2_menu', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu2_menu', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/modal')"
               menuKey="8">
-            {{ $t('message.menu2_modal', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu2_modal', {}, {}) }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/carousel')"
               menuKey="9">
-            {{ $t('message.menu2_carousel', {}, { locale: selectedLanguage }) }}
+            {{ $t('message.menu2_carousel', {}, {}) }}
             </Menuitem>
           </Submenu>
         </Menu>
@@ -58,12 +58,11 @@
 
 <script lang="ts">
 import { computed, inject } from 'vue'
-import { useI18n } from 'vue-i18n'
 import Topnav from '../components/Topnav.vue'
 import Menu from '../lib/Menu.vue'
 import Submenu from '../lib/SubMenu.vue'
 import Menuitem from '../lib/MenuItem.vue'
-import { MENU_VISIBLE, LANG } from '../constants/Refs'
+import { MENU_VISIBLE } from '../constants/Refs'
 
 export default {
   components: {
@@ -72,10 +71,9 @@ export default {
     Submenu,
     Menuitem
   },
-  setup(props, context, t) {
+  setup(props, context) {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
-    const selectedLanguage = inject<Ref<String>>(LANG)
-    return { menuVisible, selectedLanguage, ...useI18n }
+    return { menuVisible }
   }
 }
 </script>
