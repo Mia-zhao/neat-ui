@@ -40,7 +40,20 @@ const i18n = createI18n({
           checkCode: 'See Code',
           defaultText: 'Hello',
           defaultYes: 'Yes',
-          defaultNo: 'No'
+          defaultNo: 'No',
+          api: {
+            header: { property: 'Property', description: 'Description', type: 'Type', default: 'Default' },
+            content: [
+              { property: 'theme', description: 'Specify button theme, one of normal, link or text', type: 'String', default: 'normal' },
+              { property: 'disabled', description: 'disable button', type: 'Boolean', default: 'false' },
+              { property: 'transparent', description: 'set button to be transparent', type: 'Boolean', default: 'false' },
+              { property: 'level', description: 'Specify button level, primary or secondary', type: 'String', default: 'primary' },
+              { property: 'loading', description: 'Set loading style of button', type: 'Boolean', default: 'false' },
+              { property: 'shadow', description: 'Add button shadow', type: 'Boolean', default: 'false' },
+              { property: 'noRipple', description: 'Disable ripple animation', type: 'Boolean', default: 'false' },
+              { property: 'icon', description: 'Add icon to button', type: 'String', default: '' }
+            ]
+          }
         }
       }
     },
@@ -81,7 +94,20 @@ const i18n = createI18n({
           checkCode: '查看代码',
           defaultText: '你好',
           defaultYes: '是',
-          defaultNo: '否'
+          defaultNo: '否',
+          api: {
+            header: { property: '属性', description: '描述', type: '类型', default: '默认值' },
+            content: [
+              { property: 'theme', description: '设置按钮主题: normal, link 或 text', type: 'String', default: 'normal' },
+              { property: 'disabled', description: '设为禁用样式', type: 'Boolean', default: 'false' },
+              { property: 'transparent', description: '设为透明样式', type: 'Boolean', default: 'false' },
+              { property: 'level', description: '设置按钮级别: primary 或 secondary', type: 'String', default: 'primary' },
+              { property: 'loading', description: '设为加载样式', type: 'Boolean', default: 'false' },
+              { property: 'shadow', description: '增加阴影', type: 'Boolean', default: 'false' },
+              { property: 'noRipple', description: '关闭涟漪动画', type: 'Boolean', default: 'false' },
+              { property: 'icon', description: '加入 icon', type: 'String', default: '' }
+            ]
+          }
         }
       }
     }
