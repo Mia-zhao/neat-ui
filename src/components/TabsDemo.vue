@@ -1,42 +1,42 @@
 <template>
-  <h1>Tabs</h1>
+  <h1>{{ $t('demos.tabs.h1') }}</h1>
   <section class="description">
-    <p>This is Tabs component.</p>
+    <p>{{ $t('demos.tabs.descr') }}</p>
   </section>
-  <h2>Examples</h2>
+  <h2>{{ $t('demos.tabs.h2') }}</h2>
   <section class="examples">
-    <h3>Tabs Default</h3>
-    <div class="example-tabs1">
-      <Tabs v-model:selected="selected">
-        <Tab title="Nav 1">Content 1</Tab>
-        <Tab title="Nav 2">Content 2</Tab>
-      </Tabs>
-    </div>
-    <div class="example-tabs2">
-      <h3>Tabs Card Type</h3>
-      <Tabs v-model:selected="selected" type="card">
-        <Tab title="Nav 1">Content 1</Tab>
-        <Tab title="Nav 2">Content 2</Tab>
-      </Tabs>
-    </div>
+    <Demo :component="Demo1" />
+    <Demo :component="Demo2" />
   </section>
-  <section class="properties">
-
+  <h2>API</h2>
+  <section>
+    <APITable component-type="tabs" />
   </section>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-import Tabs from '../lib/Tabs.vue'
-import Tab from '../lib/Tab.vue'
+import APITable from './APITable.vue'
+import Demo from './Demo.vue'
+import Demo1 from './Tabs/Demo1.vue'
+import Demo2 from './Tabs/Demo2.vue'
 export default {
   components: {
-    Tabs,
-    Tab
+    APITable,
+    Demo
   },
   setup() {
-    const selected = ref('Nav 1')
-    return { selected }
+    return { Demo1, Demo2 }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+h1 {
+  font-size: 32px;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgb(234, 236, 239);
+}
+section {
+  margin: 16px 0;
+}
+</style>

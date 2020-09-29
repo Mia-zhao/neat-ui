@@ -78,7 +78,7 @@ export default {
       width: 100%;
       background: $color-grey-300;
     }
-    &-item {
+    .neat-tabs-nav-item {
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
@@ -120,7 +120,7 @@ export default {
       transition: none;
     }
   }
-  &-content {
+  .neat-tabs-content {
     padding: 8px 0;
   }
 }
