@@ -5,11 +5,12 @@
       <component :is="component" />
     </div>
     <div class="demo-actions">
-      <Button no-ripple level="secondary">
+      <Button no-ripple level="secondary"
+        @click="showCode = !showCode">
         {{ $t('demos.button.checkCode') }}
       </Button>
     </div>
-    <div class="demo-code">
+    <div class="demo-code" v-if="showCode">
       <pre class="language-html"
         v-html="Prism.highlight(component.__sourceCode,
         Prism.languages.html, 'html')" />
@@ -18,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
 import 'prismjs'
 import 'prismjs/themes/prism.css'
 import Button from '../lib/Button.vue'
@@ -32,7 +34,8 @@ export default {
     classPrefix: String
   },
   setup() {
-    return { Prism }
+    const showCode = ref<Boolean>(false)
+    return { Prism, showCode }
   }
 }
 </script>
