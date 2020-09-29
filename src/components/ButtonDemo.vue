@@ -5,102 +5,13 @@
   </section>
   <h2>{{ $t('demos.button.h2') }}</h2>
   <section class="examples">
-    <div class="demo">
-      <h3>{{ $t('demos.button.h3_1') }}</h3>
-      <div class="demo-component">
-        <Button>{{ $t('demos.button.defaultText') }}</Button>
-        <Button theme="link">{{ $t('demos.button.defaultText') }}</Button>
-        <Button theme="text">{{ $t('demos.button.defaultText') }}</Button>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
-    <div class="demo">
-      <h3>{{ $t('demos.button.h3_2') }}</h3>
-      <div class="demo-component">
-        <Button>{{ $t('demos.button.defaultText') }}</Button>
-        <Button disabled>{{ $t('demos.button.defaultText') }}</Button>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
-    <div class="example-transparent">
-      <h3>{{ $t('demos.button.h3_3') }}</h3>
-      <div class="demo-component">
-        <Button>{{ $t('demos.button.defaultText') }}</Button>
-        <Button transparent>{{ $t('demos.button.defaultText') }}</Button>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
-    <div class="demo">
-      <h3>{{ $t('demos.button.h3_4') }}</h3>
-      <div class="demo-component">
-        <Button>{{ $t('demos.button.defaultText') }}</Button>
-        <Button level="secondary">{{ $t('demos.button.defaultText') }}</Button>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
-    <div class="demo">
-      <h3>{{ $t('demos.button.h3_5') }}</h3>
-      <div class="demo-component">
-        <Button>{{ $t('demos.button.defaultText') }}</Button>
-        <Button loading>{{ $t('demos.button.defaultText') }}</Button>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
-    <div class="demo">
-      <h3>{{ $t('demos.button.h3_6') }}</h3>
-      <div class="demo-component">
-        <Button>
-          {{ $t('demos.button.defaultText') }}
-        </Button>
-        <Button shadow>{{ $t('demos.button.defaultText') }}</Button>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
-    <div class="demo">
-      <h3>{{ $t('demos.button.h3_7') }}</h3>
-      <div class="demo-component">
-        <Button icon="yes">{{ $t('demos.button.defaultYes') }}</Button>
-        <Button icon="no">{{ $t('demos.button.defaultNo') }}</Button>
-        <Button icon="yes"/>
-        <Button icon="no"/>
-      </div>
-      <div class="demo-actions">
-        <Button>{{ $t('demos.button.checkCode') }}</Button>
-      </div>
-      <div class="demo-code">
-        <pre>&lt;Button/&gt;</pre>
-      </div>
-    </div>
+    <Demo :component="Demo1" />
+    <Demo :component="Demo2" />
+    <Demo class-prefix="bg" :component="Demo3" />
+    <Demo :component="Demo4" />
+    <Demo :component="Demo5" />
+    <Demo :component="Demo6" />
+    <Demo :component="Demo7" />
   </section>
   <h2>API</h2>
   <section>
@@ -110,14 +21,25 @@
 </template>
 
 <script lang="ts">
-import Button from '../lib/Button.vue'
+import Demo from './Demo.vue'
+import Demo1 from './Button/Demo1.vue'
+import Demo2 from './Button/Demo2.vue'
+import Demo3 from './Button/Demo3.vue'
+import Demo4 from './Button/Demo4.vue'
+import Demo5 from './Button/Demo5.vue'
+import Demo6 from './Button/Demo6.vue'
+import Demo7 from './Button/Demo7.vue'
 export default {
-  components: { Button }
+  components: {
+    Demo
+  },
+  setup() {
+    return { Demo1, Demo2, Demo3, Demo4, Demo5, Demo6, Demo7 }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../lib/neat-style.scss';
 h1 {
   font-size: 32px;
   padding-bottom: 0.3em;
@@ -126,29 +48,11 @@ h1 {
 section {
   margin: 16px 0;
 }
-.demo {
-  border: 1px solid $color-grey-300;
-  margin: 16px 0 32px;
-  > h3 {
-    font-size: 20px;
-    padding: 8px 16px;
-    border-bottom: 1px solid $color-grey-300;
-  }
-  &-component {
-    padding: 16px;
-  }
-  &-actions {
-    padding: 8px 16px;
-    border-top: 1px dashed $color-grey-300;
-  }
-  &-code {
-    padding: 8px 16px;
-    border-top: 1px dashed $color-grey-300;
-    > pre {
-      line-height: 1.1;
-      font-family: Consolas, 'Courier New', Courier, monospace;
-      margin: 0;
-    }
-  }
+</style>
+
+<style lang="scss">
+@import '../lib/neat-style.scss';
+.demo.bg-demo > .demo-component {
+  background: $color-grey-300;
 }
 </style>

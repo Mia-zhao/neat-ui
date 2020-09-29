@@ -133,8 +133,10 @@ button.neat-button.neat-button-level-secondary {
 
 button.neat-button {
   & > .icon {
-    width: 1em;
-    height: 1em;
+    width: 0.7em;
+    height: 0.7em;
+    margin: 0;
+    padding: 0;
     & + span {
       margin-left: 6px;
     }

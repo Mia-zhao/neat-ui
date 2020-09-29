@@ -11,6 +11,14 @@
         <Submenu title="SubMenu 1" menuKey="menu1">
           <Menuitem menuKey="1">Menu 1</Menuitem>
           <Menuitem menuKey="2">Menu 2</Menuitem>
+          <Submenu title="SubMenu 2" menuKey="menu2">
+            <Menuitem menuKey="3">Menu 1</Menuitem>
+            <Menuitem menuKey="4">Menu 2</Menuitem>
+            <Submenu title="SubMenu 3" menuKey="menu3">
+              <Menuitem menuKey="5">Menu 1</Menuitem>
+              <Menuitem menuKey="6">Menu 2</Menuitem>
+          </Submenu>
+        </Submenu>
         </Submenu>
       </Menu>
     </div>

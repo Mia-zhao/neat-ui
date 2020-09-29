@@ -37,7 +37,7 @@ const i18n = createI18n({
           h3_5: 'Loading',
           h3_6: 'Shadow',
           h3_7: 'Icon',
-          checkCode: 'See Source Code',
+          checkCode: 'See Code',
           defaultText: 'Hello',
           defaultYes: 'Yes',
           defaultNo: 'No'
