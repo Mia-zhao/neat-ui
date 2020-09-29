@@ -1,5 +1,5 @@
 <template>
-  <button class="neat-switch" @click="toggle"
+  <button class="neat-switch" @click="!disabled && toggle()"
     :class="{ 'neat-switch-checked': value,
       'neat-switch-disabled': disabled,
       'neat-switch-transparent': transparent }">
@@ -10,17 +10,24 @@
 <script lang="ts">
 export default {
   props: {
-    value: Boolean,
-    disabled: Boolean,
-    transparent: Boolean
+    value: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    transparent: {
+      type: Boolean,
+      default: false
+    }
   },
   setup(props, context) {
     const toggle = () => {
       context.emit('update:value', !props.value)
     }
-    return {
-      toggle
-    }
+    return { toggle }
   }
 }
 </script>
@@ -49,7 +56,7 @@ $h_inner: $h_outer - 4px;
 }
 .neat-switch.neat-switch-checked {
   background: $color-lightblue-800;
-  >span {
+  > span {
     background: white;
     left: calc(100% - #{$h_inner} - 2px);
   }
@@ -65,7 +72,7 @@ $h_inner: $h_outer - 4px;
     cursor: no-drop;
   }
   background: $color-grey-200;
-  >span {
+  > span {
     background: $color-grey-100;
   }
   &.neat-switch-checked {
@@ -73,7 +80,17 @@ $h_inner: $h_outer - 4px;
   }
 }
 .neat-switch.neat-switch-transparent {
-  border: 1px solid white;
   background: transparent;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    height: $h_outer;
+    width: $h_outer*2;
+    border-radius: $h_outer/2;
+    border: 1px solid white;
+  }
 }
 </style>
