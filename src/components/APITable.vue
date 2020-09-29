@@ -30,11 +30,11 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const apiTable = ref<Object>({})
     const getAPI = () => {
       return i18n.global.messages.value[i18n.global.locale.value]
-        .demos.button.api
+        .demos[props.componentType].api
     }
     apiTable.value = getAPI()
     onMounted(() => {

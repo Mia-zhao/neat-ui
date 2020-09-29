@@ -1,62 +1,44 @@
 <template>
-  <h1>Switch</h1>
+  <h1>{{ $t('demos.switch.h1') }}</h1>
   <section class="description">
-    <p>This is a two-state/on-off selector.</p>
+    <p>{{ $t('demos.switch.descr') }}</p>
   </section>
-  <h2>Examples</h2>
+  <h2>{{ $t('demos.switch.h2') }}</h2>
   <section class="examples">
-    <div class="example-basic">
-      <h3>Basic Usage</h3>
-      <Switch v-model:value="checked" />
-      <pre class="code">
-        import { Switch } from 'neat-ui'
-      </pre>
-    </div>
-    <div class="example-transparent">
-      <h3>Transparent</h3>
-      <Switch :value="false" transparent />
-    </div>
-    <div class="example-disabled">
-      <h3>Disabled</h3>
-      <Switch :value="checked" disabled />
-    </div>
+    <Demo :component="Demo1" />
+    <Demo class-prefix="bg" :component="Demo2" />
+    <Demo :component="Demo3" />
   </section>
-  <section class="properties">
-
+  <h2>API</h2>
+  <section>
+    <APITable component-type="switch" />
   </section>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-import Switch from '../lib/Switch.vue'
+import APITable from './APITable.vue'
+import Demo from './Demo.vue'
+import Demo1 from './Switch/Demo1.vue'
+import Demo2 from './Switch/Demo2.vue'
+import Demo3 from './Switch/Demo3.vue'
 export default {
-  components: { Switch },
+  components: {
+    APITable,
+    Demo
+  },
   setup() {
-    const checked = ref(false)
-    return { checked }
+    return { Demo1, Demo2, Demo3 }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../lib/neat-style.scss';
 h1 {
-  margin-top: 30px;
-}
-h2 {
-  margin-top: 20px;
+  font-size: 32px;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgb(234, 236, 239);
 }
 section {
-  margin-top: 10px;
-}
-.examples {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  > div {
-    min-width: 50%;
-    border: 1px solid $color-grey-300;
-    border-radius: $radius;
-  }
+  margin: 16px 0;
 }
 </style>
