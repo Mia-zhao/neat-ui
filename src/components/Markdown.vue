@@ -7,19 +7,23 @@
 <script lang="ts">
 import { ref, onMounted, watchEffect } from 'vue'
 import i18n from '../i18n'
-import path from 'path'
 export default {
-  setup() {
-    const keypath = 'mds.intro'
+  props: {
+    keypath: {
+      type: String,
+      required: true
+    }
+  },
+  setup(props) {
     const content = ref<String>(null)
     onMounted(() => {
       watchEffect(() => {
-        import(`../md/${i18n.global.t(keypath)}`).then(result => {
+        import(`../mds/${i18n.global.t(props.keypath)}`).then(result => {
         content.value = result.default
       })
       })
     })
-    return { keypath, content }
+    return { content }
   }
 }
 </script>

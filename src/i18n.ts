@@ -21,7 +21,9 @@ const i18n = createI18n({
         menu2_carousel: 'Carousel',
       },
       mds: {
-        intro: 'intro.md'
+        intro: 'intro.md',
+        install: 'install.md',
+        getting_started: 'getting-started.md'
       }
     },
     zh: {
@@ -42,7 +44,9 @@ const i18n = createI18n({
         menu2_carousel: 'Carousel 走马灯'
       },
       mds: {
-        intro: 'intro_zh.md'
+        intro: 'intro_zh.md',
+        install: 'install_zh.md',
+        getting_started: 'getting-started_zh.md'
       }
     }
   }
