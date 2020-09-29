@@ -2,6 +2,7 @@ import { createI18n } from 'vue-i18n'
 import buttonI18n from './locales/button'
 import switchI18n from './locales/switch'
 import tabsI18n from './locales/tabs'
+import menuI18n from './locales/menu'
 
 const i18n = createI18n({
   locale: 'zh',
@@ -31,7 +32,8 @@ const i18n = createI18n({
       demos: {
         button: buttonI18n.en,
         switch: switchI18n.en,
-        tabs: tabsI18n.en
+        tabs: tabsI18n.en,
+        menu: menuI18n.en
       }
     },
     zh: {
@@ -59,7 +61,8 @@ const i18n = createI18n({
       demos: {
         button: buttonI18n.zh,
         switch: switchI18n.zh,
-        tabs: tabsI18n.zh
+        tabs: tabsI18n.zh,
+        menu: menuI18n.zh
       }
     }
   }

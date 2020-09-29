@@ -1,60 +1,44 @@
 <template>
-  <h1>Menu</h1>
+  <h1>{{ $t('demos.menu.h1') }}</h1>
   <section class="description">
-    <p>This is a menu component.</p>
+    <p>{{ $t('demos.menu.descr') }}</p>
   </section>
-  <h2>Examples</h2>
+  <h2>{{ $t('demos.menu.h2') }}</h2>
   <section class="examples">
-    <div class="example-menu1">
-      <h3>Menu1</h3>
-      <Menu>
-        <Submenu title="SubMenu 1" menuKey="menu1">
-          <Menuitem menuKey="1">Menu 1</Menuitem>
-          <Menuitem menuKey="2">Menu 2</Menuitem>
-          <Submenu title="SubMenu 2" menuKey="menu2">
-            <Menuitem menuKey="3">Menu 1</Menuitem>
-            <Menuitem menuKey="4">Menu 2</Menuitem>
-            <Submenu title="SubMenu 3" menuKey="menu3">
-              <Menuitem menuKey="5">Menu 1</Menuitem>
-              <Menuitem menuKey="6">Menu 2</Menuitem>
-          </Submenu>
-        </Submenu>
-        </Submenu>
-      </Menu>
-    </div>
-    <div class="example-menu2">
-    <h3>Menu2</h3>
-      <Menu>
-        <Submenu hideArrow title="SubMenu 2" menuKey="menu1">
-          <Menuitem menuKey="1">Menu 1</Menuitem>
-          <Menuitem menuKey="2">Menu 2</Menuitem>
-        </Submenu>
-      </Menu>
-    </div>
-    <div class="example-menu3">
-    <h3>Menu2</h3>
-      <Menu>
-        <Submenu :collapsible="false" title="SubMenu 3" menuKey="menu1">
-          <Menuitem menuKey="1">Menu 1</Menuitem>
-          <Menuitem menuKey="2">Menu 2</Menuitem>
-        </Submenu>
-      </Menu>
-    </div>
+    <Demo :component="Demo1" />
+    <Demo :component="Demo2" />
+    <Demo :component="Demo3" />
   </section>
-  <section class="properties">
-
+  <h2>API</h2>
+  <section>
+    <APITable component-type="menu" />
   </section>
 </template>
 
 <script lang="ts">
-import Menu from '../lib/Menu.vue'
-import Submenu from '../lib/SubMenu.vue'
-import Menuitem from '../lib/MenuItem.vue'
+import APITable from './APITable.vue'
+import Demo from './Demo.vue'
+import Demo1 from './Menu/Demo1.vue'
+import Demo2 from './Menu/Demo2.vue'
+import Demo3 from './Menu/Demo3.vue'
 export default {
   components: {
-    Menu,
-    Submenu,
-    Menuitem
+    APITable,
+    Demo
+  },
+  setup() {
+    return { Demo1, Demo2, Demo3 }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+h1 {
+  font-size: 32px;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgb(234, 236, 239);
+}
+section {
+  margin: 16px 0;
+}
+</style>
