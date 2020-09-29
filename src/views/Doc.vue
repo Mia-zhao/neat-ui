@@ -4,46 +4,46 @@
     <div class="content">
       <aside v-if="menuVisible">
         <Menu>
-          <Submenu :title="$t('message.menu1', {}, {})"
+          <Submenu :title="$t('message.menu1')"
             menuKey="menu1">
             <Menuitem @click="$router.push('/doc/intro')"
               menuKey="1">
-            {{ $t('message.menu1_intro', {}, {}) }}
+            {{ $t('message.menu1_intro') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/install')"
               menuKey="2">
-            {{ $t('message.menu1_install', {}, {}) }}
+            {{ $t('message.menu1_install') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/getting-started')"
               menuKey="3">
-            {{ $t('message.menu1_getting_started', {}, {}) }}
+            {{ $t('message.menu1_getting_started') }}
             </Menuitem>
           </Submenu>
-          <Submenu :title="$t('message.menu2', {}, {})"
+          <Submenu :title="$t('message.menu2')"
             menuKey="menu2">
             <Menuitem @click="$router.push('/doc/button')"
               menuKey="4">
-            {{ $t('message.menu2_button', {}, {}) }}
+            {{ $t('message.menu2_button') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/switch')"
               menuKey="5">
-            {{ $t('message.menu2_switch', {}, {}) }}
+            {{ $t('message.menu2_switch') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/tabs')"
               menuKey="6">
-            {{ $t('message.menu2_tabs', {}, {}) }}
+            {{ $t('message.menu2_tabs') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/menu')"
               menuKey="7">
-            {{ $t('message.menu2_menu', {}, {}) }}
+            {{ $t('message.menu2_menu') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/modal')"
               menuKey="8">
-            {{ $t('message.menu2_modal', {}, {}) }}
+            {{ $t('message.menu2_modal') }}
             </Menuitem>
             <Menuitem @click="$router.push('/doc/carousel')"
               menuKey="9">
-            {{ $t('message.menu2_carousel', {}, {}) }}
+            {{ $t('message.menu2_carousel') }}
             </Menuitem>
           </Submenu>
         </Menu>
@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { computed, inject } from 'vue'
+import { inject } from 'vue'
 import Topnav from '../components/Topnav.vue'
 import Menu from '../lib/Menu.vue'
 import Submenu from '../lib/SubMenu.vue'

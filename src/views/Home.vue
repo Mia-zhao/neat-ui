@@ -7,7 +7,7 @@
       <p class="actions">
         <a class="light" href="https://github.com">GitHub</a>
         <router-link to="/doc">
-          {{ $t('message.homeStartButton', {}, {}) }}
+          {{ $t('message.homeStartButton') }}
         </router-link>
       </p>
       <a class="info" href="https://v3.vuejs.org/">

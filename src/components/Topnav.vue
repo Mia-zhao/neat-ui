@@ -12,7 +12,7 @@
       </li>
       <li @click="$i18n.locale='zh'"
         :class="{selected: $i18n.locale === 'zh'}">
-        中文
+        中
       </li>
     </ul>
     <svg v-if="toggleMenuVisible"
