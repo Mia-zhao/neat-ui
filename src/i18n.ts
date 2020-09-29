@@ -24,6 +24,24 @@ const i18n = createI18n({
         intro: 'intro.md',
         install: 'install.md',
         getting_started: 'getting-started.md'
+      },
+      demos: {
+        button: {
+          h1: 'Button Component',
+          descr: 'This is a button component. A button is a clickable component used to trigger an operation.',
+          h2: 'Examples',
+          h3_1: 'Basic',
+          h3_2: 'Disabled',
+          h3_3: 'Transparent',
+          h3_4: 'Level',
+          h3_5: 'Loading',
+          h3_6: 'Shadow',
+          h3_7: 'Icon',
+          checkCode: 'See Source Code',
+          defaultText: 'Hello',
+          defaultYes: 'Yes',
+          defaultNo: 'No'
+        }
       }
     },
     zh: {
@@ -47,6 +65,24 @@ const i18n = createI18n({
         intro: 'intro_zh.md',
         install: 'install_zh.md',
         getting_started: 'getting-started_zh.md'
+      },
+      demos: {
+        button: {
+          h1: 'Button 组件',
+          descr: '这是一个 Button 按钮组件。按钮组件是可以点击的，用来触发一个操作。',
+          h2: '示例',
+          h3_1: '基础',
+          h3_2: '支持 disabled',
+          h3_3: '支持 transparent',
+          h3_4: '支持 level',
+          h3_5: '支持 loading',
+          h3_6: '支持 shadow',
+          h3_7: '支持 icon',
+          checkCode: '查看代码',
+          defaultText: '你好',
+          defaultYes: '是',
+          defaultNo: '否'
+        }
       }
     }
   }

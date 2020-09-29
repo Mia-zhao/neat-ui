@@ -36,13 +36,18 @@ export default {
       type: Boolean,
       default: false
     },
+    noRipple: {
+      type: Boolean,
+      default: false
+    },
     icon: {
       type: String,
       default: ''
     }
   },
   setup(props, context) {
-    const { theme, level, disabled, transparent, loading, shadow, icon } = props
+    const { theme, level, disabled, transparent, loading,
+      shadow, icon, noRipple } = props
     let buttonIcon = icon
     if (loading) {
       buttonIcon = 'loading'
@@ -56,7 +61,8 @@ export default {
         'neat-button-disabled': disabled,
         'neat-button-transparent': transparent,
         'neat-button-loading': loading,
-        'neat-button-shadow': shadow
+        'neat-button-shadow': shadow,
+        'neat-button-no-ripple': noRipple
       }
     })
     return { classes, showIcon, buttonIcon, hasSlot }
@@ -70,6 +76,7 @@ $h: 32px;
 button.neat-button.neat-button {
   box-sizing: border-box;
   height: $h;
+  line-height: $h;
   padding: 0 12px;
   cursor: pointer;
   display: inline-flex;
@@ -155,13 +162,16 @@ button.neat-button:not(.neat-button-disabled) {
     border-radius: 40%;
     background-color: rgba(129, 212, 250, 0.3);
     width: 100px;
-    height: 100px;
-    margin-top: -50px;
+    height: 120px;
+    margin-top: -60px;
     margin-left: -50px;
     top: 50%;
     left: 50%;
-    animation: ripple 0.2s;
+    animation: ripple 0.4s;
     opacity: 1;
+  }
+  &.neat-button-no-ripple::before {
+    animation: none;
   }
   &:active::before {
     display: block;
@@ -179,7 +189,7 @@ button.neat-button:not(.neat-button-disabled) {
     }
     to {
       opacity: 1;
-      transform: scale(2);
+      transform: scale(1);
     }
   }
 }
