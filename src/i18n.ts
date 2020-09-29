@@ -3,6 +3,7 @@ import buttonI18n from './locales/button'
 import switchI18n from './locales/switch'
 import tabsI18n from './locales/tabs'
 import menuI18n from './locales/menu'
+import modalI18n from './locales/modal'
 
 const i18n = createI18n({
   locale: 'zh',
@@ -33,7 +34,8 @@ const i18n = createI18n({
         button: buttonI18n.en,
         switch: switchI18n.en,
         tabs: tabsI18n.en,
-        menu: menuI18n.en
+        menu: menuI18n.en,
+        modal: modalI18n.en
       }
     },
     zh: {
@@ -62,7 +64,8 @@ const i18n = createI18n({
         button: buttonI18n.zh,
         switch: switchI18n.zh,
         tabs: tabsI18n.zh,
-        menu: menuI18n.zh
+        menu: menuI18n.zh,
+        modal: modalI18n.zh
       }
     }
   }
