@@ -5,8 +5,12 @@ import App from './App.vue'
 import { router } from './router'
 import i18n from './i18n'
 import 'github-markdown-css'
+import DemoPage from './components/DemoPage.vue'
+import Demo from './components/Demo.vue'
 
 const app = createApp(App)
 app.use(router)
 app.use(i18n)
 app.mount('#app')
+app.component('DemoPage', DemoPage)
+app.component('Demo', Demo)
