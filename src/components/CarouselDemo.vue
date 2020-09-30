@@ -1,55 +1,18 @@
 <template>
-  <h1>Carousel</h1>
-  <section class="description">
-    <p>This is a Carousel component.</p>
-  </section>
-  <h2>Examples</h2>
-  <section class="examples">
-    <h3>Carousel Default</h3>
-    <div class="example-carousel1">
-      <Carousel v-model:selectedIndex="selectedIndex">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-      </Carousel>
-    </div>
-    <h3>Carousel auto play</h3>
-    <div class="example-carousel2">
-      <Carousel v-model:selectedIndex="selectedIndex"
-        autoPlay>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-      </Carousel>
-    </div>
-    <h3>Carousel bar slide</h3>
-    <div class="example-carousel3">
-      <Carousel v-model:selectedIndex="selectedIndex"
-        slideStyle="bar">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-      </Carousel>
-    </div>
-  </section>
-  <section class="properties">
-
-  </section>
+  <DemoPage type="carousel">
+    <Demo :component="Demo1" />
+    <Demo :component="Demo2" />
+    <Demo :component="Demo3" />
+  </DemoPage>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-import Carousel from '../lib/Carousel.vue'
+import Demo1 from './Carousel/Demo1.vue'
+import Demo2 from './Carousel/Demo2.vue'
+import Demo3 from './Carousel/Demo3.vue'
 export default {
-  components: {
-    Carousel
-  },
   setup() {
-    const selectedIndex = ref<Number>(0);
-    return { selectedIndex }
+    return { Demo1, Demo2, Demo3 }
   }
 }
 </script>
