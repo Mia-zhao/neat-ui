@@ -2,7 +2,7 @@
 
 <template>
   <Carousel v-model:selectedIndex="selectedIndex"
-    autoPlay>
+    autoPlay :duration="2000">
     <div>1</div>
     <div>2</div>
     <div>3</div>

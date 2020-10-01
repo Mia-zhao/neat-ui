@@ -1,29 +1,26 @@
 <template>
-  <div class="neat-carousel">
-    <div class="neat-carousel-content-wrapper">
-      <div class="neat-carousel-content">
-        <component class="neat-carousel-content-item"
-          :class="{active: index === selectedIndex,
-            prev: selectedIndex === 0 ?
-              index === slots.length-1 : index === selectedIndex-1,
-            next: selectedIndex === slots.length-1 ?
-              index === 0 : index === selectedIndex+1}"
-          v-for="(slot, index) in slots" :key="index"
-          :is="slot" />
-      </div>
+  <div class="neat-carousel"
+    @mouseenter="pauseAutoPlay()"
+    @mouseleave="autoPlay && startAutoPlay()">
+    <div class="neat-carousel-content"
+      ref="carouselView"
+      :class="{ transition: state.inTransition }">
+      <slot></slot>
     </div>
     <div class="neat-carousel-slide"
       :class="{[`neat-carousel-slide-${slideStyle}`]: slideStyle}">
       <div class="neat-carousel-slide-item"
         v-for="(slot, index) in slots" :key="index"
-        @click="$emit('update:selectedIndex', index)"
-        :class="{active: index === selectedIndex}">
+        @click="state.index = index"
+        :class="{active: index === state.index}">
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { ref, reactive,
+  onMounted, watch, nextTick, onBeforeUnmount } from 'vue'
 export default {
   props: {
     slideStyle: {
@@ -34,13 +31,103 @@ export default {
       type: Boolean,
       default: false
     },
+    duration: {
+      type: Number,
+      default: 3000
+    },
     selectedIndex: {
-      type: Number
+      type: Number,
+      default: 0
     }
   },
   setup(props, context) {
     const slots = context.slots.default()
-    return { slots }
+    const carouselView = ref<HTMLDivElement>(null)
+    const timerId = ref<Number>(null)
+    const index = ref<Number>(props.selectedIndex)
+    const inTransition = ref<Boolean>(true)
+    const inChange = ref<Boolean>(false)
+    const state = reactive({ timerId, index, inTransition, inChange })
+    const startAutoPlay = () => {
+      const play = () => {
+        updateIndexBy(1)
+        state.timerId = setTimeout(play, props.duration)
+      }
+      if (state.timerId) return
+      state.timerId = setTimeout(play, props.duration)
+    }
+    const pauseAutoPlay = () => {
+      if (!state.timerId) return
+      window.clearTimeout(state.timerId)
+      state.timerId = null
+    }
+    const updateIndexBy = (delta) => {
+      if (state.inChange) return
+      state.index += delta
+      state.index = state.index > slots.length-1 ? 0 :
+        (state.index < 0 ? slots.length-1 : state.index)
+    }
+    const reset = () => {
+      state.inTransition = false
+      setTransform(
+        state.index === 0 ?
+        `translateX(-100%)`
+        : `translateX(${-100*slots.length}%)`
+      )
+      state.inChange = false
+      removeListener()
+    }
+    const addListener = () => {
+      carouselView.value.addEventListener('transitionend', reset)
+    }
+    const removeListener = () => {
+      carouselView.value.removeEventListener('transitionend', reset)
+    }
+    const setTransform = (style) => {
+      carouselView.value.style.transform = style
+    }
+    const cloneDOM = () => {
+      slots.forEach(slot => {
+        slot.el.style['flex-shrink'] = 0
+        slot.el.classList
+          .add('neat-carousel-content-item')
+      })
+      carouselView.value.prepend(
+        slots[slots.length-1].el.cloneNode(true)
+      )
+      carouselView.value.append(
+        slots[0].el.cloneNode(true)
+      )
+    }
+    onMounted(() => {
+      nextTick(() => {
+        cloneDOM()
+        props.autoPlay && startAutoPlay()
+      })
+      watch(index,
+        (index, prevIndex) => {
+          context.emit('update:selectedIndex', index)
+          state.inTransition = true
+          if (index === 0 && prevIndex === slots.length-1) {
+            setTransform(`translateX(${-100*(slots.length+1)}%)`)
+            addListener()
+            state.inChange = true
+            return
+          }
+          if (index === slots.length-1 && prevIndex === 0) {
+            setTransform(`translate(0)`)
+            addListener()
+            state.inChange = true
+            return
+          }
+          setTransform(`translateX(${-100*(index+1)}%)`)
+      })
+    })
+    onBeforeUnmount(() => {
+      state.inChange = false
+      removeListner()
+    })
+    return { slots, state, carouselView, startAutoPlay, pauseAutoPlay }
   }
 }
 </script>
@@ -48,38 +135,32 @@ export default {
 <style lang="scss">
 @import './neat-style.scss';
 .neat-carousel {
-  transform-style: preserve-3d;
-  &-content-wrapper {
-    overflow: hidden;
-  }
+  width: 100%;
+  overflow: hidden;
+  position: relative;
   &-content {
     display: flex;
-    justify-content: center;
-    &-item {
-      position: absolute;
-      top: 0;
-      opacity: 0;
-      width: 100%;
-      margin: auto;
-      padding: 1rem 4rem;
-      z-index: 100;
-      transition: transform 300ms, opacity 300ms, z-index 300ms;
-      &.active {
-        opacity: 1;
-        position: relative;
-        z-index: 900;
-      }
-      &.prev, &.next {
-        z-index: 800;
-      }
-      &.prev { transform: translateX(-100%); }
-      &.next { transform: translateX(100%); }
+    width: 100%;
+    transform: translateX(-100%);
+    &.transition {
+      transition: transform 400ms linear;
     }
   }
-  &-slide {
+  &-content-item {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    height: 200px;
+    line-height: 200px;
+    width: 100%;
+    color: #fff;
+    background: #BDBDBD;
+  }
+  .neat-carousel-slide {
     display: flex;
     justify-content: center;
-    &-item {
+    margin: 8px 0;
+    .neat-carousel-slide-item {
       margin: 0 2px;
       width: 8px;
       height: 8px;
@@ -92,14 +173,13 @@ export default {
       }
     }
   }
-  &-slide-bar {
-    .neat-carousel-slide-item {
-      width: 12px;
-      height: 5px;
-      border-radius: $radius;
-      &.active {
-        width: 20px;
-      }
+  .neat-carousel--slide-bar
+  > .neat-carousel--slide-item {
+    width: 12px;
+    height: 5px;
+    border-radius: $radius;
+    &.active {
+      width: 20px;
     }
   }
 }
