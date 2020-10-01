@@ -128,6 +128,7 @@ aside {
   left: 0;
   padding-top: 70px;
   height: 100%;
+  z-index: 9;
 }
 .menu {
   margin-top: 28px;
