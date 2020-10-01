@@ -47,7 +47,13 @@ export default {
     const index = ref<Number>(props.selectedIndex)
     const inTransition = ref<Boolean>(true)
     const inChange = ref<Boolean>(false)
-    const state = reactive({ timerId, index, inTransition, inChange })
+    const dragStartX = ref<Number>(0)
+    const dragStartY = ref<Number>(0)
+    const mousedown = ref<Boolean>(false)
+    const state = reactive({
+      timerId, index, inTransition, inChange,
+      dragStartX, dragStartY, mousedown
+    })
     const startAutoPlay = () => {
       const play = () => {
         updateIndexBy(1)
@@ -83,6 +89,17 @@ export default {
     const removeListener = () => {
       carouselView.value.removeEventListener('transitionend', reset)
     }
+    const addDragListeners = () => {
+      if (isTouchDevice()) {
+        carouselView.value.addEventListener('touchstart', handleMousedown)
+        carouselView.value.addEventListener('touchmove', handleMousemove)
+        carouselView.value.addEventListener('touchend', handleMouseup)
+      } else {
+        carouselView.value.addEventListener('mousedown', handleMousedown)
+        carouselView.value.addEventListener('mousemove', handleMousemove)
+        carouselView.value.addEventListener('mouseup', handleMouseup)
+      }
+    }
     const setTransform = (style) => {
       carouselView.value.style.transform = style
     }
@@ -99,10 +116,42 @@ export default {
         slots[0].el.cloneNode(true)
       )
     }
+    const isTouchDevice = () => {
+      return 'ontouchstart' in window
+    }
+    const getClientX = (e) => {
+      return isTouchDevice() ? e.touches[0].clientX : e.clientX
+    }
+    const getClientY = (e) => {
+      return isTouchDevice() ? e.touches[0].clientY : e.clientY
+    }
+    const handleMousedown = (e) => {
+      if (!e.touches) e.preventDefault()
+      state.mousedown = true
+      state.dragStartX = getClientX(e)
+      state.dragStartY = getClientY(e)
+    }
+    const handleMouseup = () => {
+      state.mousedown = false
+    }
+    const handleMousemove = (e) => {
+      if (!state.mousedown) return
+      const deltaX = state.dragStartX - getClientX(e)
+      const deltaY = state.dragStartY - getClientY(e)
+      if (Math.abs(deltaX) < Math.abs(deltaY)) return
+      if (deltaX > 15) {
+        handleMouseup()
+        updateIndexBy(1)
+      } else if (deltaX < -15) {
+        handleMouseup()
+        updateIndexBy(-1)
+      }
+    }
     onMounted(() => {
       nextTick(() => {
         cloneDOM()
         props.autoPlay && startAutoPlay()
+        addDragListeners()
       })
       watch(index,
         (index, prevIndex) => {
@@ -125,7 +174,12 @@ export default {
     })
     onBeforeUnmount(() => {
       state.inChange = false
-      removeListner()
+      removeListener()
+      if (isTouchDevice) {
+        carouselView.value.removeEventListener('touchmove', handleMousemove)
+      } else {
+        carouselView.value.removeEventListener('mousemove', handleMousemove)
+      }
     })
     return { slots, state, carouselView, startAutoPlay, pauseAutoPlay }
   }
@@ -173,8 +227,8 @@ export default {
       }
     }
   }
-  .neat-carousel--slide-bar
-  > .neat-carousel--slide-item {
+  .neat-carousel-slide-bar
+  > .neat-carousel-slide-item {
     width: 12px;
     height: 5px;
     border-radius: $radius;
