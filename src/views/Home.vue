@@ -38,7 +38,7 @@ export default {
   position: relative;
 }
 .banner {
-  color: $text_color;
+  color: $theme_text_color;
   padding: 100px 0;
   display: flex;
   justify-content: center;

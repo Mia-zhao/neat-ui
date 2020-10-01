@@ -3,7 +3,7 @@
     <Topnav toggleMenuVisible class="nav" />
     <div class="content">
       <aside v-if="menuVisible">
-        <Menu>
+        <Menu class="menu" :key="key">
           <Submenu :title="$t('message.menu1')"
             menuKey="menu1">
             <Menuitem @click="$router.push('/doc/intro')"
@@ -47,7 +47,6 @@
             </Menuitem>
           </Submenu>
         </Menu>
-
       </aside>
       <main>
         <router-view />
@@ -57,12 +56,13 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue'
+import { inject, ref, onMounted, watch } from 'vue'
 import Topnav from '../components/Topnav.vue'
 import Menu from '../lib/Menu.vue'
 import Submenu from '../lib/SubMenu.vue'
 import Menuitem from '../lib/MenuItem.vue'
 import { MENU_VISIBLE } from '../constants/Refs'
+import i18n from '../i18n'
 
 export default {
   components: {
@@ -73,7 +73,15 @@ export default {
   },
   setup(props, context) {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
-    return { menuVisible }
+    const key = ref<Number>(0)
+    onMounted(() => {
+      watch(i18n.global.locale,
+        (val, prevVal) => {
+          key.value = key.value === 0 ? 1 : 0
+        }
+      )
+    })
+    return { menuVisible, key }
   }
 }
 </script>
@@ -87,6 +95,8 @@ export default {
   height: 100vh;
   > .nav {
     flex-shrink: 0;
+    background: #fff;
+    box-shadow: 0 2px 8px #f0f1f2;
   }
   > .content {
     flex-grow: 1;
@@ -105,11 +115,12 @@ export default {
   > main {
     flex-grow: 1;
     padding: 16px;
+    padding-top: 36px;
     background: #fff;
   }
 }
 aside {
-  background: $aside_bg_color;
+  background: #fff;
   width: 300px;
   padding: 16px;
   position: fixed;
@@ -117,6 +128,9 @@ aside {
   left: 0;
   padding-top: 70px;
   height: 100%;
+}
+.menu {
+  margin-top: 28px;
 }
 main {
   overflow: auto;
