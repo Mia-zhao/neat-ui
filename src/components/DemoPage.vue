@@ -36,6 +36,7 @@ h1 {
 }
 section {
   margin: 16px 0;
+  overflow: auto;
 }
 </style>
 

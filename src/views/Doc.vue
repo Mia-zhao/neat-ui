@@ -2,7 +2,8 @@
   <div class="layout">
     <Topnav toggleMenuVisible class="nav" />
     <div class="content">
-      <aside v-if="menuVisible">
+      <aside v-if="menuVisible"
+        v-click-outside="handleClickOutside">
         <Menu class="menu" :key="key">
           <Submenu :title="$t('message.menu1')"
             menuKey="menu1">
@@ -71,9 +72,33 @@ export default {
     Submenu,
     Menuitem
   },
+  directives: {
+    'click-outside': {
+      mounted(el: any, binding: any) {
+        if (document.documentElement.clientWidth > 500) return
+        el.clickOutside = function (event: Event) {
+          if (!(el === event.target ||
+            el.contains(event.target))) {
+            binding.value(event)
+          }
+        }
+        document.body.addEventListener('click', el.clickOutside)
+      }
+    },
+    unmounted(el: any) {
+      document.body.removeEventListener('click', el.clickOutside)
+      el.clickOutside = null
+    }
+  },
   setup(props, context) {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
     const key = ref<Number>(0)
+    const handleClickOutside = (e) => {
+      if (e.path.length >= 2 &&
+        (e.path[1].classList.contains('toggleAsideMenu') ||
+        e.path[0].classList.contains('toggleAsideMenu'))) return
+      if (menuVisible.value === true) menuVisible.value = false
+    }
     onMounted(() => {
       watch(i18n.global.locale,
         (val, prevVal) => {
@@ -81,7 +106,7 @@ export default {
         }
       )
     })
-    return { menuVisible, key }
+    return { menuVisible, key, handleClickOutside }
   }
 }
 </script>
