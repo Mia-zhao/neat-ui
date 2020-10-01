@@ -1,7 +1,7 @@
 <template>
   <div class="neat-carousel"
     @mouseenter="pauseAutoPlay()"
-    @mouseleave="autoPlay && startAutoPlay()">
+    @mouseleave="startAutoPlay()">
     <div class="neat-carousel-content"
       ref="carouselView"
       :class="{ transition: state.inTransition }">
@@ -59,7 +59,7 @@ export default {
         updateIndexBy(1)
         state.timerId = setTimeout(play, props.duration)
       }
-      if (state.timerId) return
+      if ((!props.autoPlay) || state.timerId) return
       state.timerId = setTimeout(play, props.duration)
     }
     const pauseAutoPlay = () => {
@@ -75,11 +75,8 @@ export default {
     }
     const reset = () => {
       state.inTransition = false
-      setTransform(
-        state.index === 0 ?
-        `translateX(-100%)`
-        : `translateX(${-100*slots.length}%)`
-      )
+      const n = state.index === 0 ? 1 : slots.length
+      setTransform(`translateX(${-100*n}%)`)
       state.inChange = false
       removeListener()
     }
@@ -98,6 +95,17 @@ export default {
         carouselView.value.addEventListener('mousedown', handleMousedown)
         carouselView.value.addEventListener('mousemove', handleMousemove)
         carouselView.value.addEventListener('mouseup', handleMouseup)
+      }
+    }
+    const removeDragListeners = () => {
+      if (isTouchDevice()) {
+        carouselView.value.removeEventListener('touchstart', handleMousedown)
+        carouselView.value.removeEventListener('touchmove', handleMousemove)
+        carouselView.value.removeEventListener('touchend', handleMouseup)
+      } else {
+        carouselView.value.removeEventListener('mousedown', handleMousedown)
+        carouselView.value.removeEventListener('mousemove', handleMousemove)
+        carouselView.value.removeEventListener('mouseup', handleMouseup)
       }
     }
     const setTransform = (style) => {
@@ -150,36 +158,31 @@ export default {
     onMounted(() => {
       nextTick(() => {
         cloneDOM()
-        props.autoPlay && startAutoPlay()
+        startAutoPlay()
         addDragListeners()
       })
-      watch(index,
-        (index, prevIndex) => {
-          context.emit('update:selectedIndex', index)
-          state.inTransition = true
-          if (index === 0 && prevIndex === slots.length-1) {
-            setTransform(`translateX(${-100*(slots.length+1)}%)`)
-            addListener()
-            state.inChange = true
-            return
-          }
-          if (index === slots.length-1 && prevIndex === 0) {
-            setTransform(`translate(0)`)
-            addListener()
-            state.inChange = true
-            return
-          }
-          setTransform(`translateX(${-100*(index+1)}%)`)
+      watch(index, (index, prevIndex) => {
+        context.emit('update:selectedIndex', index)
+        state.inTransition = true
+        if (index === 0 && prevIndex === slots.length-1) {
+          setTransform(`translateX(${-100*(slots.length+1)}%)`)
+          addListener()
+          state.inChange = true
+          return
+        }
+        if (index === slots.length-1 && prevIndex === 0) {
+          setTransform(`translate(0)`)
+          addListener()
+          state.inChange = true
+          return
+        }
+        setTransform(`translateX(${-100*(index+1)}%)`)
       })
     })
     onBeforeUnmount(() => {
       state.inChange = false
       removeListener()
-      if (isTouchDevice) {
-        carouselView.value.removeEventListener('touchmove', handleMousemove)
-      } else {
-        carouselView.value.removeEventListener('mousemove', handleMousemove)
-      }
+      removeDragListeners()
     })
     return { slots, state, carouselView, startAutoPlay, pauseAutoPlay }
   }

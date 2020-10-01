@@ -136,4 +136,9 @@ aside {
 main {
   overflow: auto;
 }
+@media (max-width: 500px) {
+  aside {
+    width: 200px;
+  }
+}
 </style>

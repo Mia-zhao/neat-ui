@@ -12,6 +12,7 @@ export default {
       content: [
         { property: 'slideStyle', description: 'Specify carousel slider style: dot or bar', type: 'String', default: 'dot' },
         { property: 'autoPlay', description: 'Carousel will auto play if true', type: 'Boolean', default: 'false' },
+        { property: 'duration', description: 'Autoplay duration (in ms)', type: 'Number', default: '3000' },
         { property: 'selectedIndex', description: 'Indicates active index of the carousel', type: 'Number', default: '' }
       ]
     }
@@ -29,6 +30,7 @@ export default {
       content: [
         { property: 'slideStyle', description: '设置走马灯 slider 样式: dot 或 bar', type: 'String', default: 'dot' },
         { property: 'autoPlay', description: '设置自动播放', type: 'Boolean', default: 'false' },
+        { property: 'duration', description: '自动播放间隔时间 (ms)', type: 'Number', default: '3000' },
         { property: 'selectedIndex', description: '反应当前的走马灯 index', type: 'Number', default: '' }
       ]
     }
