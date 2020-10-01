@@ -84,7 +84,7 @@ export default {
       carouselView.value.addEventListener('transitionend', reset)
     }
     const removeListener = () => {
-      carouselView.value.removeEventListener('transitionend', reset)
+      carouselView.value?.removeEventListener('transitionend', reset)
     }
     const addDragListeners = () => {
       if (isTouchDevice()) {
@@ -99,13 +99,13 @@ export default {
     }
     const removeDragListeners = () => {
       if (isTouchDevice()) {
-        carouselView.value.removeEventListener('touchstart', handleMousedown)
-        carouselView.value.removeEventListener('touchmove', handleMousemove)
-        carouselView.value.removeEventListener('touchend', handleMouseup)
+        carouselView.value?.removeEventListener('touchstart', handleMousedown)
+        carouselView.value?.removeEventListener('touchmove', handleMousemove)
+        carouselView.value?.removeEventListener('touchend', handleMouseup)
       } else {
-        carouselView.value.removeEventListener('mousedown', handleMousedown)
-        carouselView.value.removeEventListener('mousemove', handleMousemove)
-        carouselView.value.removeEventListener('mouseup', handleMouseup)
+        carouselView.value?.removeEventListener('mousedown', handleMousedown)
+        carouselView.value?.removeEventListener('mousemove', handleMousemove)
+        carouselView.value?.removeEventListener('mouseup', handleMouseup)
       }
     }
     const setTransform = (style) => {
