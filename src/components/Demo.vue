@@ -7,7 +7,8 @@
     <div class="demo-actions">
       <Button no-ripple level="secondary"
         @click="showCode = !showCode">
-        {{ $t('demos.button.checkCode') }}
+        {{ showCode ? $t('demos.button.hideCode')
+        : $t('demos.button.checkCode') }}
       </Button>
     </div>
     <div class="demo-code" v-if="showCode">
