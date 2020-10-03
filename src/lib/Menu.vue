@@ -8,12 +8,17 @@
 </template>
 
 <script lang="ts">
-import { ref, provide } from 'vue'
+import { ref, provide, onMounted, watch } from 'vue'
 import SubMenu from './SubMenu.vue'
 import MenuItem from './MenuItem.vue'
 export default {
+  props: {
+    selectedMenu: {
+      type: String
+    }
+  },
   setup(props, context) {
-    const selectedMenu = ref<String>(null)
+    const selectedMenu = ref<String>(props.selectedMenu || null)
     provide('selected-menu', selectedMenu)
 
     const slots = context.slots.default()
@@ -23,6 +28,12 @@ export default {
           'Children of Menu must be of type SubMenu or MenuItem'
         )
       }
+    })
+    onMounted(() => {
+      watch(selectedMenu,
+        (newSelected, prevSelected) => {
+          context.emit('update:selectedMenu', newSelected)
+        })
     })
     return { slots }
   }

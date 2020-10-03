@@ -9,15 +9,15 @@
             <template v-slot:title>{{ $t('message.menu1') }}</template>
             <template v-slot:items>
               <Menuitem @click="$router.push('/doc/intro')"
-                menuKey="1">
+                mKey="1">
               {{ $t('message.menu1_intro') }}
               </Menuitem>
               <Menuitem @click="$router.push('/doc/install')"
-                menuKey="2">
+                mKey="2">
               {{ $t('message.menu1_install') }}
               </Menuitem>
               <Menuitem @click="$router.push('/doc/getting-started')"
-                menuKey="3">
+                mKey="3">
               {{ $t('message.menu1_getting_started') }}
               </Menuitem>
             </template>
@@ -25,29 +25,11 @@
           <Submenu menuKey="menu2">
             <template v-slot:title>{{ $t('message.menu2') }}</template>
             <template v-slot:items>
-            <Menuitem @click="$router.push('/doc/button')"
-              menuKey="4">
-            {{ $t('message.menu2_button') }}
-            </Menuitem>
-              <Menuitem @click="$router.push('/doc/switch')"
-                menuKey="5">
-              {{ $t('message.menu2_switch') }}
-              </Menuitem>
-              <Menuitem @click="$router.push('/doc/tabs')"
-                menuKey="6">
-              {{ $t('message.menu2_tabs') }}
-              </Menuitem>
-              <Menuitem @click="$router.push('/doc/menu')"
-                menuKey="7">
-              {{ $t('message.menu2_menu') }}
-              </Menuitem>
-              <Menuitem @click="$router.push('/doc/modal')"
-                menuKey="8">
-              {{ $t('message.menu2_modal') }}
-              </Menuitem>
-              <Menuitem @click="$router.push('/doc/carousel')"
-                menuKey="9">
-              {{ $t('message.menu2_carousel') }}
+              <Menuitem v-for="(item, index) in menuHash.menu2.items"
+                @click="$router.push(menuHash.menu2.pathRoot+'/'+item)"
+                :key="`${index+4}`"
+                :mKey="`${index+4}`">
+                {{ $t(menuHash.menu2.nameRoot + "_" + item) }}
               </Menuitem>
             </template>
           </Submenu>
@@ -101,7 +83,15 @@ export default {
         e.path[0].classList.contains('toggleAsideMenu'))) return
       if (menuVisible.value === true) menuVisible.value = false
     }
-    return { menuVisible, handleClickOutside }
+    const menuHash = {
+      menu2: {
+        nameRoot: 'message.menu2',
+        pathRoot: '/doc',
+        items: [ 'button', 'switch', 'tabs',
+          'menu', 'modal', 'carousel' ]
+      }
+    }
+    return { menuVisible, handleClickOutside, menuHash }
   }
 }
 </script>

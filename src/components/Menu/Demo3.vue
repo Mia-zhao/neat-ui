@@ -5,8 +5,8 @@
     <Submenu :collapsible="false" menuKey="menu1">
       <template v-slot:title>Menu 1</template>
       <template v-slot:items>
-        <Menuitem menuKey="1">Menu 1</Menuitem>
-        <Menuitem menuKey="2">Menu 2</Menuitem>
+        <Menuitem mKey="1">Menu 1</Menuitem>
+        <Menuitem mKey="2">Menu 2</Menuitem>
       </template>
     </Submenu>
   </Menu>

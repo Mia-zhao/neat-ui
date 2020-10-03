@@ -11,17 +11,13 @@
     </div>
     <div class="neat-sub-menu-children"
       :class="{collapsed: collapsed}">
-      <component
-        :class="{selected: selectedMenu===slot.props.menuKey,
-        'neat-menu-item': slot.type===MenuItem}"
-        v-for="slot in slots" :key="slot.props.menuKey"
-        :is="slot"/>
+      <slot name="items" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, inject } from 'vue'
+import { ref, inject, Fragment, onMounted, nextTick } from 'vue'
 import MenuItem from './MenuItem.vue'
 export default {
   props: {
@@ -46,15 +42,28 @@ export default {
     const collapsed = ref<Boolean>(props.defaultCollapsed)
     const selectedMenu = inject<Ref<String>>('selected-menu')
     const slots = context.slots.items()
-    slots.forEach(slot => {
-      const hmrId = slot.type.__hmrId
-      if (!(/^.*(MenuItem)|(SubMenu).vue$/.test(hmrId))) {
-        throw new Error(
-          'Children of SubMenu must be of type SubMenu or MenuItem'
-        )
+    const checkType = (vnode) => {
+      if (vnode.type === Fragment) {
+        vnode.children.forEach(child => {
+          checkType(child)
+        })
+      } else {
+        if (!(/^.*(MenuItem)|(SubMenu).vue$/.test(
+          vnode.type.__hmrId))) {
+          throw new Error(
+            'Children of SubMenu must be of type SubMenu or MenuItem'
+          )
+        }
       }
+    }
+    onMounted(() => {
+      nextTick(() => {
+        slots.forEach(slot => {
+          checkType(slot)
+        })
+      })
     })
-    return { slots, collapsed, selectedMenu, MenuItem }
+    return { collapsed }
   }
 }
 </script>
@@ -87,12 +96,6 @@ export default {
 .neat-sub-menu-children {
   display: none;
   &.collapsed { display: block; }
-  > .neat-menu-item {
-    font-size: 14px;
-    cursor: pointer;
-    &.selected { color: $color-lightblue-700; }
-    &.selected::after { background: rgba(129, 212, 250, 0.3); }
-  }
 }
 
 .neat-menu {
@@ -107,19 +110,6 @@ export default {
   }
   > .neat-sub-menu-children {
     padding-left: 1em;
-    > .neat-menu-item {
-      line-height: 1em;
-      margin: 0.5em 0;
-      padding: 0.5em 0;
-    }
   }
-}
-.neat-menu-item::after {
-  content: '';
-  height: 2em;
-  position: absolute;
-  left: 0;
-  margin-top: -0.5em;
-  right: 0;
 }
 </style>
