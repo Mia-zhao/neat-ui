@@ -131,8 +131,7 @@ export default {
 }
 aside {
   background: #fff;
-  width: 300px;
-  padding: 16px;
+  width: 280px;
   position: fixed;
   top: 0;
   left: 0;
@@ -142,6 +141,7 @@ aside {
 }
 .menu {
   margin-top: 28px;
+  height: 100%;
 }
 main {
   overflow: auto;

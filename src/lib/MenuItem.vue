@@ -26,7 +26,7 @@ export default {
 @import './neat-style.scss';
 .neat-sub-menu-children {
   div.neat-menu-item {
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     &.selected { color: $color-lightblue-700; }
     &.selected::after { background: rgba(129, 212, 250, 0.3); }
@@ -35,6 +35,7 @@ export default {
     line-height: 1em;
     margin: 0.5em 0;
     padding: 0.5em 0;
+    padding-left: 1em;
     &::after {
       content: '';
       height: 2em;

@@ -106,7 +106,7 @@ export default {
 }
 .neat-sub-menu {
   > .neat-sub-menu-title {
-    padding: 0.25em 0.5em 0.25em 0;
+    padding: 0.25em 0.5em 0.25em 1em;
   }
   > .neat-sub-menu-children {
     padding-left: 1em;
