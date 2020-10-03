@@ -5,7 +5,12 @@
       <h1>Neat UI</h1>
       <i18n-t tag="h2" keypath="message.homeH2" />
       <p class="actions">
-        <a class="light" href="https://github.com">GitHub</a>
+        <a class="light" href="https://github.com">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-github"></use>
+          </svg>
+          <span>GitHub</span>
+        </a>
         <router-link to="/doc">
           {{ $t('message.homeStartButton') }}
         </router-link>
@@ -47,7 +52,7 @@ export default {
   h1 {
     font-size: 56px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     cursor: default; 
   }
   h2 {
@@ -58,24 +63,31 @@ export default {
     text-align: center
   }
   > .actions {
-    margin-top: 60px;
-    padding: 8px 0;
+    margin-top: 64px;
+    display: flex;
     a {
+      display: flex;
+      align-items: center;
       font-size: 20px;
-      margin: 0 8px;
+      margin: 0 12px;
       color: #ffffff;
       background: #09c3ff;
-      display: inline-block;
       $h: 42px;
       height: $h;
       line-height: $h;
       border-radius: $h / 2;
-      min-width: 100px;
+      padding: 0 16px;
       text-align: center;
+      border: 1px solid #fff;
       &.light {
        background: #fff;
        color: #1c2f5a;
        border: 1px solid #BDBDBD;
+      }
+      > .icon {
+        height: 18px;
+        width: 18px;
+        margin-right: 4px;
       }
     }
   }

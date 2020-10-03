@@ -13,7 +13,7 @@ const i18n = createI18n({
     en: {
       message: {
         homeH2: 'A simple and clean UI framework',
-        homeStartButton: 'Start',
+        homeStartButton: 'Get Started',
         homeMessage: 'Based on Vue 3',
         menu1: 'Doc',
         menu1_intro: 'Introdunction',
@@ -44,7 +44,7 @@ const i18n = createI18n({
     zh: {
       message: {
         homeH2: '一个简易干净的 UI 框架',
-        homeStartButton: '开始',
+        homeStartButton: '开始使用',
         homeMessage: '基于 Vue 3',
         menu1: '文档',
         menu1_intro: '介绍',
