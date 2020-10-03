@@ -112,17 +112,17 @@ export default {
       carouselView.value.style.transform = style
     }
     const cloneDOM = () => {
-      slots.forEach(slot => {
-        slot.el.style['flex-shrink'] = 0
-        slot.el.classList
-          .add('neat-carousel-content-item')
-      })
       carouselView.value.prepend(
         slots[slots.length-1].el.cloneNode(true)
       )
       carouselView.value.append(
         slots[0].el.cloneNode(true)
       )
+      for (const el of carouselView.value.children) {
+        el.style['flex-shrink'] = 0
+        el.classList
+          .add('neat-carousel-content-item')
+      }
     }
     const isTouchDevice = () => {
       return 'ontouchstart' in window
