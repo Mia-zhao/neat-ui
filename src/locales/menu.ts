@@ -10,7 +10,6 @@ export default {
     api: {
       header: { property: 'Property', description: 'Description', type: 'Type', default: 'Default' },
       content: [
-        { property: 'title', description: 'Specify entry of SubMenu', type: 'String', default: '' },
         { property: 'menuKey', description: 'Unique key for MenuItem', type: 'String', default: '' },
         { property: 'defaultCollapsed', description: 'Menu is collapsed by default if true', type: 'Boolean', default: 'true' },
         { property: 'collapsible', description: 'Configure whether menu is collapsible', type: 'Boolean', default: 'true' },
@@ -29,7 +28,6 @@ export default {
     api: {
       header: { property: '属性', description: '描述', type: '类型', default: '默认值' },
       content: [
-        { property: 'title', description: '设置 SubMenu 标题', type: 'String', default: '' },
         { property: 'menuKey', description: '提供独一的 MenuItem Key', type: 'String', default: '' },
         { property: 'defaultCollapsed', description: '如果为 true, 菜单是默认展开的', type: 'Boolean', default: 'true' },
         { property: 'collapsible', description: '设置菜单是否能展开收回', type: 'Boolean', default: 'true' },

@@ -3,9 +3,7 @@
     <div class="neat-sub-menu-title"
       :class="{collapsed: collapsed}"
       @click="collapsible && (collapsed = !collapsed)">
-      <span>
-        {{ title }}
-      </span>
+      <div class="title"><slot name="title" /></div>
       <svg class="icon" aria-hidden="true"
         v-if="collapsible && !hideArrow">
         <use :xlink:href="`#icon-arrow`"></use>
@@ -27,10 +25,6 @@ import { ref, inject } from 'vue'
 import MenuItem from './MenuItem.vue'
 export default {
   props: {
-    title: {
-      type: String,
-      required: true
-    },
     menuKey: {
       type: String,
       required: true
@@ -51,7 +45,7 @@ export default {
   setup(props, context) {
     const collapsed = ref<Boolean>(props.defaultCollapsed)
     const selectedMenu = inject<Ref<String>>('selected-menu')
-    const slots = context.slots.default()
+    const slots = context.slots.items()
     slots.forEach(slot => {
       const hmrId = slot.type.__hmrId
       if (!(/^.*(MenuItem)|(SubMenu).vue$/.test(hmrId))) {
@@ -74,7 +68,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    > span {
+    > .title {
       font-size: 16px;
     }
     > .icon {
@@ -83,7 +77,7 @@ export default {
       height: 12px;
     }
     &.collapsed, &:hover {
-      > span { color: $color-lightblue-700; }
+      > .title { color: $color-lightblue-700; }
       > .icon { fill: $color-lightblue-700; }
     }
     &.collapsed > .icon { transform: rotateX(180deg); }

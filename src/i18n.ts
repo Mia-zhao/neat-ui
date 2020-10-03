@@ -8,6 +8,7 @@ import carouselI18n from './locales/carousel'
 
 const i18n = createI18n({
   locale: 'zh',
+  fallbackLocale: 'en',
   messages: {
     en: {
       message: {

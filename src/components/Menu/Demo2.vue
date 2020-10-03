@@ -2,9 +2,12 @@
 
 <template>
   <Menu>
-    <Submenu hideArrow title="菜单1" menuKey="menu1">
-      <Menuitem menuKey="1">菜单条目1</Menuitem>
-      <Menuitem menuKey="2">菜单条目2</Menuitem>
+    <Submenu hideArrow menuKey="menu1">
+      <template v-slot:title>菜单1</template>
+      <template v-slot:items>
+        <Menuitem menuKey="1">菜单条目1</Menuitem>
+        <Menuitem menuKey="2">菜单条目2</Menuitem>
+      </template>
     </Submenu>
   </Menu>
 </template>
