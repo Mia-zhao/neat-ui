@@ -6,11 +6,11 @@ Neat UI is a UI component library based on Vue 3.
 
 ## Install
 ```
-npm install neat-ui
+npm install neat-ui-dev
 ```
 or
 ```
-yarn add neat-ui
+yarn add neat-ui-dev
 ```
 
 ## Examples
