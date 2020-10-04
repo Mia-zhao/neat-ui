@@ -44,14 +44,14 @@ export default {
 }
 .banner {
   color: $theme_text_color;
-  padding: 100px 0;
+  padding: 20vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   h1 {
     font-size: 56px;
-    padding: 10px;
+    padding: 2vh;
     margin-bottom: 24px;
     cursor: default; 
   }

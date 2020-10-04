@@ -12,6 +12,7 @@
     <APITable :component-type="type" />
   </section>
   <section class="markdown-body">
+    <hr style="height: 0.1em;">
     <p><slot name="previous"/></p>
     <p><slot name="next"/></p>
   </section>

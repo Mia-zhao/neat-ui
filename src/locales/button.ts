@@ -10,7 +10,7 @@ export default {
     h3_5: 'Loading',
     h3_6: 'Shadow',
     h3_7: 'Icon',
-    checkCode: 'See Code',
+    checkCode: 'Show Code',
     hideCode: 'Hide Code',
     defaultText: 'Hello',
     defaultYes: 'Yes',
