@@ -2,11 +2,11 @@
 
 在终端运行以下命令:
 ```
-npm install neat-ui
+npm install neat-ui-dev
 ```
 或者
 ```
-yarn add neat-ui
+yarn add neat-ui-dev
 ```
 
 <br>

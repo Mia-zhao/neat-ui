@@ -9,6 +9,7 @@
 <script lang="ts">
 import { inject } from 'vue'
 export default {
+  name: 'MenuItem',
   props: {
     mKey: {
       type: String,

@@ -2,11 +2,11 @@
 
 Execute the following from a terminal:
 ```
-npm install neat-ui
+npm install neat-ui-dev
 ```
 or
 ```
-yarn add neat-ui
+yarn add neat-ui-dev
 ```
 
 <br>

@@ -19,7 +19,9 @@
 <script lang="ts">
 import { ref, inject, Fragment, onMounted, nextTick, watch } from 'vue'
 import MenuItem from './MenuItem.vue'
+const NAME = 'SubMenu'
 export default {
+  name: NAME,
   props: {
     selectedMenu: {
       type: String
@@ -47,8 +49,8 @@ export default {
           checkType(child)
         })
       } else {
-        if (!(/^.*(MenuItem)|(SubMenu).vue$/.test(
-          vnode.type.__hmrId))) {
+        if (!(vnode.type.name === NAME ||
+        vnode.type.name === MenuItem.name)) {
           throw new Error(
             'Children of SubMenu must be of type SubMenu or MenuItem'
           )

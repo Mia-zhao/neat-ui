@@ -4,9 +4,9 @@
 
 然后通过以下代码引用组件:
 ```
-import { Button, Switch, Tabs, Menu, Modal, Carousel } from 'neat-ui'
+import { Button, Switch, Tabs, Menu, Modal, Carousel } from 'neat-ui-dev'
 ```
-接下来就可以开始使用组件了。
+k
 
 ## Vue 组件使用示例
 ```
@@ -15,7 +15,8 @@ import { Button, Switch, Tabs, Menu, Modal, Carousel } from 'neat-ui'
 </template>
 
 <script lang="ts">
-import { Button } from 'neat-ui'
+import { Button } from 'neat-ui-dev'
+import 'neat-ui-dev/dist/lib/neat.css'
 export default {
   components: {
     Button

@@ -4,7 +4,7 @@ Please [install](#/doc/install) Neat UI first.
 
 Then you can import components:
 ```
-import { Button, Switch, Tabs, Menu, Modal, Carousel } from 'neat-ui'
+import { Button, Switch, Tabs, Menu, Modal, Carousel } from 'neat-ui-dev'
 ```
 Next feel free to use the components.
 
@@ -15,7 +15,8 @@ Next feel free to use the components.
 </template>
 
 <script lang="ts">
-import { Button } from 'neat-ui'
+import { Button } from 'neat-ui-dev'
+import 'neat-ui-dev/dist/lib/neat.css'
 export default {
   components: {
     Button
