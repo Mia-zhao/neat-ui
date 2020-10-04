@@ -26,6 +26,8 @@ const i18n = createI18n({
         menu2_menu: 'Menu',
         menu2_modal: 'Modal',
         menu2_carousel: 'Carousel',
+        notFound: 'Oops, this path is not found',
+        backHome: 'Take me home'
       },
       mds: {
         intro: 'intro.md',
@@ -56,7 +58,9 @@ const i18n = createI18n({
         menu2_tabs: 'Tabs 标签页',
         menu2_menu: 'Menu 菜单',
         menu2_modal: 'Modal 对话框',
-        menu2_carousel: 'Carousel 走马灯'
+        menu2_carousel: 'Carousel 走马灯',
+        notFound: '哦豁，路径找不到了',
+        backHome: '返回首页'
       },
       mds: {
         intro: 'intro_zh.md',

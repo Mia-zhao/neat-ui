@@ -2,6 +2,7 @@ import { createWebHashHistory, createRouter } from 'vue-router'
 import { h } from 'vue'
 import Home from './views/Home.vue'
 import Doc from './views/Doc.vue'
+import NotFound from './views/404.vue'
 import ButtonDemo from './components/ButtonDemo.vue'
 import SwitchDemo from './components/SwitchDemo.vue'
 import ModalDemo from './components/ModalDemo.vue'
@@ -29,6 +30,7 @@ export const router = createRouter({
         { path: 'menu', component: MenuDemo },
         { path: 'carousel', component: CarouselDemo }
       ]
-    }
+    },
+    { path: '/:pathMatch(.*)*', component: NotFound }
   ]
 })
