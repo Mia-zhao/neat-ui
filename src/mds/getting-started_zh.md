@@ -2,4 +2,4 @@
 
 上一节: [安装](#/doc/install)
 
-下一节: [button 组件](#/doc/button)
+下一节: [Button 按钮](#/doc/button)

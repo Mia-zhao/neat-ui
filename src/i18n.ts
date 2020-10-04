@@ -27,7 +27,9 @@ const i18n = createI18n({
         menu2_modal: 'Modal',
         menu2_carousel: 'Carousel',
         notFound: 'Oops, this path is not found',
-        backHome: 'Take me home'
+        backHome: 'Take me home',
+        previous: 'Previous: ',
+        next: 'Next: '
       },
       mds: {
         intro: 'intro.md',
@@ -60,7 +62,9 @@ const i18n = createI18n({
         menu2_modal: 'Modal 对话框',
         menu2_carousel: 'Carousel 走马灯',
         notFound: '哦豁，路径找不到了',
-        backHome: '返回首页'
+        backHome: '返回首页',
+        previous: '上一节: ',
+        next: '下一节: '
       },
       mds: {
         intro: 'intro_zh.md',

@@ -11,6 +11,10 @@
   <section>
     <APITable :component-type="type" />
   </section>
+  <section class="markdown-body">
+    <p><slot name="previous"/></p>
+    <p><slot name="next"/></p>
+  </section>
 </template>
 
 <script lang="ts">

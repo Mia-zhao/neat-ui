@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import { inject, ref } from 'vue'
+import { inject, ref, onMounted } from 'vue'
 import Topnav from '../components/Topnav.vue'
 import Menu from '../lib/Menu.vue'
 import Submenu from '../lib/SubMenu.vue'
@@ -93,8 +93,11 @@ export default {
           'menu', 'modal', 'carousel' ]
       }
     }
-    router.afterEach(() => {
+    onMounted(() => {
       selectedMenu.value = router.currentRoute.value.path
+      router.afterEach((to, from) => {
+        selectedMenu.value = to.path
+      })
     })
     return { menuVisible, handleClickOutside, menuHash, selectedMenu }
   }

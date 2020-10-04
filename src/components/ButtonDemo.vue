@@ -7,6 +7,18 @@
     <Demo :component="Demo5" />
     <Demo :component="Demo6" />
     <Demo :component="Demo7" />
+    <template v-slot:previous>
+      {{ $t('message.previous') }}
+      <router-link to="/doc/getting-started">
+        {{ $t('message.menu1_getting_started') }}
+      </router-link>
+    </template>
+    <template v-slot:next>
+      {{ $t('message.next') }}
+      <router-link to="/doc/switch">
+        {{ $t('message.menu2_switch') }}
+      </router-link>
+    </template>
   </DemoPage>
 </template>
 

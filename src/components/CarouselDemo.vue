@@ -3,6 +3,12 @@
     <Demo :component="Demo1" />
     <Demo :component="Demo2" />
     <Demo :component="Demo3" />
+    <template v-slot:previous>
+      {{ $t('message.previous') }}
+      <router-link to="/doc/modal">
+        {{ $t('message.menu2_modal') }}
+      </router-link>
+    </template>
   </DemoPage>
 </template>
 

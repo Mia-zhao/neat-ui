@@ -3,6 +3,18 @@
     <Demo :component="Demo1" />
     <Demo :component="Demo2" />
     <Demo :component="Demo3" />
+    <template v-slot:previous>
+      {{ $t('message.previous') }}
+      <router-link to="/doc/menu">
+        {{ $t('message.menu2_menu') }}
+      </router-link>
+    </template>
+    <template v-slot:next>
+      {{ $t('message.next') }}
+      <router-link to="/doc/carousel">
+        {{ $t('message.menu2_carousel') }}
+      </router-link>
+    </template>
   </DemoPage>
 </template>
 
