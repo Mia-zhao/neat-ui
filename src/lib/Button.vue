@@ -161,12 +161,12 @@ button.neat-button:not(.neat-button-disabled) {
     display: none;
     content: '';
     position: absolute;
-    border-radius: 40%;
+    border-radius: 50%;
     background-color: rgba(129, 212, 250, 0.3);
-    width: 100px;
+    width: 120px;
     height: 120px;
     margin-top: -60px;
-    margin-left: -50px;
+    margin-left: -60px;
     top: 50%;
     left: 50%;
     animation: ripple 0.4s;

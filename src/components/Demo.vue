@@ -43,7 +43,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../lib/neat-style.scss';
-
 .demo {
   border: 1px solid $color-grey-300;
   margin: 16px 0 32px;
@@ -71,5 +70,10 @@ export default {
 }
 .language-html {
   background: #fff;
+}
+.demo-actions {
+  button.neat-button {
+    width: 116px;
+  }
 }
 </style>
