@@ -5,7 +5,7 @@
       <h1>Neat UI</h1>
       <i18n-t tag="h2" keypath="message.homeH2" />
       <p class="actions">
-        <a class="light" href="https://github.com">
+        <a class="light" href="https://github.com/Mia-zhao/neat-ui">
           <svg class="icon" aria-hidden="true">
             <use xlink:href="#icon-github"></use>
           </svg>
