@@ -2,7 +2,7 @@
 
 <template>
   <Menu>
-    <Submenu hideArrow menuKey="menu1">
+    <Submenu hideArrow>
       <template v-slot:title>菜单1</template>
       <template v-slot:items>
         <Menuitem mKey="1">菜单条目1</Menuitem>

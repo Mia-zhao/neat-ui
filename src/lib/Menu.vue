@@ -1,8 +1,9 @@
 <template>
   <div class="neat-menu">
     <component class="neat-menu-children"
-      v-for="slot in slots"
-      :key="slot.props.menuKey"
+      v-for="(slot, index) in slots"
+      :key="index"
+      :selectedMenu="selectedMenu"
       :is="slot"/>
   </div>
 </template>

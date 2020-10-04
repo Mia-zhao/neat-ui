@@ -17,13 +17,12 @@
 </template>
 
 <script lang="ts">
-import { ref, inject, Fragment, onMounted, nextTick } from 'vue'
+import { ref, inject, Fragment, onMounted, nextTick, watch } from 'vue'
 import MenuItem from './MenuItem.vue'
 export default {
   props: {
-    menuKey: {
-      type: String,
-      required: true
+    selectedMenu: {
+      type: String
     },
     defaultCollapsed: {
       type: Boolean,
@@ -61,6 +60,10 @@ export default {
         slots.forEach(slot => {
           checkType(slot)
         })
+      })
+      watch(() => props.selectedMenu,
+      (newSelected, prevSelected) => {
+        selectedMenu.value = newSelected
       })
     })
     return { collapsed }

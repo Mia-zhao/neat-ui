@@ -2,19 +2,19 @@
 
 <template>
   <Menu>
-    <Submenu menuKey="menu1">
+    <Submenu>
       <template v-slot:title>Menu Title 1</template>
       <template v-slot:items>
         <Menuitem mKey="1">Menu item 1</Menuitem>
         <Menuitem mKey="2">Menu item 2</Menuitem>
       </template>
     </Submenu>
-    <Submenu menuKey="menu2">
+    <Submenu>
       <template v-slot:title>Menu Title 2</template>
       <template v-slot:items>
         <Menuitem mKey="3">Menu item 3</Menuitem>
         <Menuitem mKey="4">Menu item 4</Menuitem>
-        <Submenu menuKey="menu3">
+        <Submenu>
           <template v-slot:title>Menu Title 3</template>
           <template v-slot:items>
             <Menuitem mKey="5">Menu item 5</Menuitem>

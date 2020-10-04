@@ -2,7 +2,7 @@
 
 <template>
   <Menu>
-    <Submenu :collapsible="false" menuKey="menu1">
+    <Submenu :collapsible="false">
       <template v-slot:title>Menu 1</template>
       <template v-slot:items>
         <Menuitem mKey="1">Menu 1</Menuitem>

@@ -4,31 +4,31 @@
     <div class="content">
       <aside v-if="menuVisible"
         v-click-outside="handleClickOutside">
-        <Menu class="menu">
-          <Submenu menuKey="menu1">
+        <Menu class="menu" :selectedMenu="selectedMenu">
+          <Submenu>
             <template v-slot:title>{{ $t('message.menu1') }}</template>
             <template v-slot:items>
               <Menuitem @click="$router.push('/doc/intro')"
-                mKey="1">
+                mKey="/doc/intro">
               {{ $t('message.menu1_intro') }}
               </Menuitem>
               <Menuitem @click="$router.push('/doc/install')"
-                mKey="2">
+                mKey="/doc/install">
               {{ $t('message.menu1_install') }}
               </Menuitem>
               <Menuitem @click="$router.push('/doc/getting-started')"
-                mKey="3">
+                mKey="/doc/getting-started">
               {{ $t('message.menu1_getting_started') }}
               </Menuitem>
             </template>
           </Submenu>
-          <Submenu menuKey="menu2">
+          <Submenu>
             <template v-slot:title>{{ $t('message.menu2') }}</template>
             <template v-slot:items>
               <Menuitem v-for="(item, index) in menuHash.menu2.items"
                 @click="$router.push(menuHash.menu2.pathRoot+'/'+item)"
-                :key="`${index+4}`"
-                :mKey="`${index+4}`">
+                :key="`${menuHash.menu2.pathRoot+'/'+item}`"
+                :mKey="`${menuHash.menu2.pathRoot+'/'+item}`">
                 {{ $t(menuHash.menu2.nameRoot + "_" + item) }}
               </Menuitem>
             </template>
@@ -43,12 +43,13 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 import Topnav from '../components/Topnav.vue'
 import Menu from '../lib/Menu.vue'
 import Submenu from '../lib/SubMenu.vue'
 import Menuitem from '../lib/MenuItem.vue'
 import { MENU_VISIBLE } from '../constants/Refs'
+import { router } from '../router'
 
 export default {
   components: {
@@ -77,6 +78,7 @@ export default {
   },
   setup(props, context) {
     const menuVisible = inject<Ref<boolean>>(MENU_VISIBLE)
+    const selectedMenu = ref<String>(null)
     const handleClickOutside = (e) => {
       if (e.path.length >= 2 &&
         (e.path[1].classList.contains('toggleAsideMenu') ||
@@ -91,7 +93,10 @@ export default {
           'menu', 'modal', 'carousel' ]
       }
     }
-    return { menuVisible, handleClickOutside, menuHash }
+    router.afterEach(() => {
+      selectedMenu.value = router.currentRoute.value.path
+    })
+    return { menuVisible, handleClickOutside, menuHash, selectedMenu }
   }
 }
 </script>
