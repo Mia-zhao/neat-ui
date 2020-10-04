@@ -1,7 +1,7 @@
 export default {
   en: {
     h1: 'Carousel Component',
-    descr: 'This is a Carousel component.',
+    descr: 'This is a Carousel component. Carousel allows switching content in limited space.',
     h2: 'Examples',
     h3_1: 'Basic Style',
     h3_2: 'autoPlay',
@@ -19,7 +19,7 @@ export default {
   },
   zh: {
     h1: 'Carousel 组件',
-    descr: '这是一个 Carousel 走马灯组件。',
+    descr: '这是一个 Carousel 走马灯组件。走马灯在有限空间内切换内容。',
     h2: '示例',
     h3_1: '基础类型',
     h3_2: '支持 autoPlay',

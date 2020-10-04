@@ -10,10 +10,11 @@ export default {
     api: {
       header: { property: 'Property', description: 'Description', type: 'Type', default: 'Default' },
       content: [
-        { property: 'menuKey', description: 'Unique key for MenuItem', type: 'String', default: '' },
-        { property: 'defaultCollapsed', description: 'Menu is collapsed by default if true', type: 'Boolean', default: 'true' },
-        { property: 'collapsible', description: 'Configure whether menu is collapsible', type: 'Boolean', default: 'true' },
-        { property: 'hideArrow', description: 'Hide arrow if true', type: 'Boolean', default: 'false' },
+        { property: 'selectedMenu', description: 'Menu prop. Reactive reference to currently selected mKey', type: 'String', default: '' },
+        { property: 'defaultCollapsed', description: 'SubMenu prop. Menu is collapsed by default if true', type: 'Boolean', default: 'true' },
+        { property: 'collapsible', description: 'SubMenu prop. Configure whether menu is collapsible', type: 'Boolean', default: 'true' },
+        { property: 'hideArrow', description: 'SubMenu prop. Hide arrow if true', type: 'Boolean', default: 'false' },
+        { property: 'mKey', description: 'MenuItem prop. Unique key for MenuItem', type: 'String', default: '' }
       ]
     }
   },
@@ -28,10 +29,11 @@ export default {
     api: {
       header: { property: '属性', description: '描述', type: '类型', default: '默认值' },
       content: [
-        { property: 'menuKey', description: '提供独一的 MenuItem Key', type: 'String', default: '' },
-        { property: 'defaultCollapsed', description: '如果为 true, 菜单是默认展开的', type: 'Boolean', default: 'true' },
-        { property: 'collapsible', description: '设置菜单是否能展开收回', type: 'Boolean', default: 'true' },
-        { property: 'hideArrow', description: '如果为 true, 隐藏箭头', type: 'Boolean', default: 'false' },
+        { property: 'selectedMenu', description: 'Menu 参数。反应当前选中的菜单项的 mKey', type: 'String', default: '' },
+        { property: 'defaultCollapsed', description: 'SubMenu 参数。如果为 true, 菜单是默认展开的', type: 'Boolean', default: 'true' },
+        { property: 'collapsible', description: 'SubMenu 参数。设置菜单是否能展开收回', type: 'Boolean', default: 'true' },
+        { property: 'hideArrow', description: 'SubMenu 参数。如果为 true, 隐藏箭头', type: 'Boolean', default: 'false' },
+        { property: 'mKey', description: 'MenuItem 参数。提供独一的 MenuItem Key', type: 'String', default: '' }
       ]
     }
   }

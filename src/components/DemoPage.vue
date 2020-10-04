@@ -50,4 +50,7 @@ section {
 .demo.bg-demo > .demo-component {
   background: $color-grey-300;
 }
+.description {
+  text-align: justify;
+}
 </style>

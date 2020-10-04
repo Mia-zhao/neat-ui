@@ -226,7 +226,7 @@ export default {
       transition: all 250ms;
       cursor: pointer;
       &.active {
-        background: black;
+        background: $color-grey-600;
       }
     }
   }
