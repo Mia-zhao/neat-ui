@@ -1,6 +1,6 @@
 <template>
   <i18n-t tag="article" :keypath="keypath" class="markdown-body"
-    v-html="content">
+    v-html="htmlContent">
   </i18n-t>
 </template>
 
@@ -9,21 +9,23 @@ import { ref, onMounted, watchEffect } from 'vue'
 import i18n from '../i18n'
 export default {
   props: {
+    content: {
+      type: Object,
+      required: true
+    },
     keypath: {
       type: String,
       required: true
     }
   },
   setup(props) {
-    const content = ref<String>(null)
+    const htmlContent = ref<String>(props.content[i18n.global.locale.value])
     onMounted(() => {
       watchEffect(() => {
-        import(`../mds/${i18n.global.t(props.keypath)}`).then(result => {
-        content.value = result.default
-      })
+        htmlContent.value = props.content[i18n.global.locale.value]
       })
     })
-    return { content }
+    return { htmlContent }
   }
 }
 </script>
