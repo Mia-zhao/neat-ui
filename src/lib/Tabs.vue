@@ -43,7 +43,7 @@ export default {
         const { left: navLeft } = navContainer.value.getBoundingClientRect()
         underline.value.style.width = selectedWidth + 'px'
         underline.value.style.left = (selectedLeft - navLeft) + 'px'
-      })
+      }, { flush: 'post' })
     })
     const defaultSlots = context.slots.default()
     defaultSlots.forEach(slot => {

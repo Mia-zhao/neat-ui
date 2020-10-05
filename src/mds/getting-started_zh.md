@@ -6,7 +6,6 @@
 ```
 import { Button, Switch, Tabs, Menu, Modal, Carousel } from 'neat-ui-dev'
 ```
-k
 
 ## Vue 组件使用示例
 ```
