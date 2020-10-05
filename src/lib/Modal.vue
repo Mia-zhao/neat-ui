@@ -17,10 +17,13 @@
               </slot>
             </main>
             <footer>
-              <Button @click="onFunctionOK"
-                icon="yes"></Button>
-              <Button @click="onFunctionCancel"
-                icon="no" level="secondary"></Button>
+                <Button @click="onFunctionOK">
+                  <slot name="confirm">确认</slot>
+                </Button>
+                <Button @click="onFunctionCancel"
+                  level="secondary">
+                  <slot name="cancel">取消</slot>
+                </Button>
             </footer>
           </div>
         </div>
