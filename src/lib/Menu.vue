@@ -24,7 +24,8 @@ export default {
 
     const slots = context.slots.default()
     slots.forEach(slot => {
-      if (slot.type !== SubMenu && slot.type !== MenuItem) {
+      if (slot.type.name !== SubMenu.name
+        && slot.type.name !== MenuItem.name) {
         throw new Error(
           'Children of Menu must be of type SubMenu or MenuItem'
         )
