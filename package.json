@@ -1,10 +1,11 @@
 {
   "name": "neat-ui-dev",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "files": [
     "dist/lib/*"
   ],
   "main": "dist/lib/neat.js",
+  "module": "dist/lib/neat.esm.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

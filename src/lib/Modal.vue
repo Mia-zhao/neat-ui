@@ -17,9 +17,9 @@
               </slot>
             </main>
             <footer>
-              <Button @click="functionOK?.() !== false && closeModal()"
+              <Button @click="onFunctionOK"
                 icon="yes"></Button>
-              <Button @click="functionCancel?.(); closeModal();"
+              <Button @click="onFunctionCancel"
                 icon="no" level="secondary"></Button>
             </footer>
           </div>
@@ -60,7 +60,13 @@ export default {
     const closeModal = () => {
       context.emit('update:visible', false)
     }
-    return { closeModal }
+    const onFunctionOK = () => {
+      props.functionOK?.() !== false && closeModal()
+    }
+    const onFunctionCancel = () => {
+      props.functionCancel?.(); closeModal();
+    }
+    return { closeModal, onFunctionOK, onFunctionCancel }
   }
 }
 </script>
