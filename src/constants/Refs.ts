@@ -1,5 +1,0 @@
-const MENU_VISIBLE = "MENU_VISIBLE"
-
-export {
-  MENU_VISIBLE
-}
